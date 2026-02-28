@@ -3,38 +3,1584 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R. Fernández | Edición de Fotografía Profesional</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'malta-stone': '#E6DCC4',
-                        'malta-sand': '#D4C5B0',
-                        'malta-blue': '#1E4D5C',
-                        'malta-deep': '#0F2A33',
-                        'malta-gold': '#B8956B',
-                        'malta-gold-light': '#D4AF37',
-                        'parchment': '#F5F0E6',
-                    },
-                    fontFamily: {
-                        'cinzel': ['Cinzel', 'serif'],
-                        'playfair': ['Playfair Display', 'serif'],
-                        'lato': ['Lato', 'sans-serif'],
-                    }
-                }
+    <title>Rodolfo Fernández | Fotografía de Viajes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --cream: #F5F1EB;
+            --cream-dark: #E8E2D9;
+            --charcoal: #2C3E50;
+            --warm-gray: #5D6D7E;
+            --accent: #8E6E53;
+            --gold: #B8956B;
+            --white: #FFFFFF;
+            --mexican-teal: #006847;
+            --mexican-red: #CE1126;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Navegación */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(245, 241, 235, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(142, 110, 83, 0.1);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-mark {
+            width: 44px;
+            height: 44px;
+            border: 1.5px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 500;
+            background: var(--white);
+        }
+        
+        .logo-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+        
+        .logo-text p {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--warm-gray);
+            text-transform: uppercase;
+        }
+        
+        .nav-links {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 32px;
+                align-items: center;
             }
         }
+        
+        .nav-links a {
+            color: var(--warm-gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--accent); }
+        
+        .btn-nav {
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 24px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-nav:hover {
+            background: var(--charcoal);
+            transform: translateY(-1px);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 100px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238E6E53' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 24px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--white);
+            border: 1px solid var(--cream-dark);
+            color: var(--accent);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .hero h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(48px, 8vw, 88px);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 24px;
+            color: var(--charcoal);
+        }
+        
+        .hero h2 span { 
+            color: var(--accent); 
+            font-style: italic; 
+            font-weight: 400;
+        }
+        
+        .hero p {
+            color: var(--warm-gray);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            padding: 16px 40px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(142, 110, 83, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--charcoal);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
+        }
+        
+        .btn-secondary {
+            padding: 16px 40px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            background: transparent;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover { 
+            background: var(--accent); 
+            color: var(--white); 
+        }
+        
+        /* Filtros */
+        .filters {
+            background: var(--white);
+            border-bottom: 1px solid var(--cream-dark);
+            padding: 20px 0;
+            position: sticky;
+            top: 77px;
+            z-index: 100;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .filters::-webkit-scrollbar { display: none; }
+        
+        .filter-container {
+            display: flex;
+            gap: 12px;
+            min-width: max-content;
+            padding: 0 24px;
+        }
+        
+        @media (min-width: 768px) {
+            .filter-container {
+                justify-content: center;
+                padding: 0;
+            }
+        }
+        
+        .filter-btn {
+            padding: 10px 24px;
+            border-radius: 100px;
+            border: 1px solid var(--cream-dark);
+            background: var(--white);
+            color: var(--warm-gray);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--cream);
+        }
+        
+        /* Galería masonry */
+        .gallery {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .section-header p {
+            color: var(--accent);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+        
+        .section-header .subtitle {
+            color: var(--warm-gray);
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        .gallery-grid {
+            column-count: 1;
+            column-gap: 24px;
+        }
+        
+        @media (min-width: 640px) { .gallery-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .gallery-grid { column-count: 3; } }
+        
+        .photo-card {
+            break-inside: avoid;
+            margin-bottom: 24px;
+            position: relative;
+            background: var(--white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s;
+        }
+        
+        .photo-card:hover img { transform: scale(1.03); }
+        
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(44, 62, 80, 0.9) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+        }
+        
+        .photo-card:hover .photo-overlay { opacity: 1; }
+        
+        .photo-info {
+            transform: translateY(16px);
+            transition: transform 0.4s;
+        }
+        
+        .photo-card:hover .photo-info { transform: translateY(0); }
+        
+        .photo-country {
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        
+        .photo-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-style: italic;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        
+        .photo-location {
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        
+        .photo-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            color: var(--gold);
+        }
+        
+        /* Ediciones */
+        .quality {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+        
+        .quality-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .quality-grid { grid-template-columns: 1fr 1fr; }
+        }
+        
+        .quality-image {
+            position: relative;
+            background: var(--white);
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .quality-image::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border: 1px solid var(--cream-dark);
+            pointer-events: none;
+        }
+        
+        .quality-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+        
+        .quality-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .quality-content h3 span { 
+            color: var(--accent); 
+            font-style: italic; 
+        }
+        
+        .quality-content > p {
+            color: var(--warm-gray);
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .feature-item {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--white);
+            border: 1px solid var(--cream-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        
+        .feature-item h4 {
+            font-size: 16px;
+            color: var(--charcoal);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        
+        .feature-item p {
+            color: var(--warm-gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .quality-cta {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--cream-dark);
+        }
+        
+        .quality-cta .price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        
+        .quality-cta p {
+            color: var(--warm-gray);
+            font-size: 14px;
+        }
+        
+        /* Sobre mí - FOTO REAL DEL USUARIO */
+        .about {
+            padding: 100px 0;
+            background: var(--white);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .about-grid { grid-template-columns: 300px 1fr; }
+        }
+        
+        .about-portrait {
+            position: relative;
+            text-align: center;
+        }
+        
+        .portrait-frame {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid var(--white);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        
+        .portrait-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        
+        .mexican-flag {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .about-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .about-content h2 span { 
+            color: var(--accent); 
+            font-style: italic; 
+        }
+        
+        .about-role {
+            color: var(--accent);
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        
+        .about-text {
+            color: var(--warm-gray);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        
+        .about-quote {
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--cream);
+            border-left: 3px solid var(--accent);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--charcoal);
+        }
+        
+        /* Contacto */
+        .contact {
+            padding: 100px 0;
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 48px;
+            color: var(--gold);
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+        
+        .contact h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+        
+        .contact > p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 48px;
+            font-size: 16px;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        @media (min-width: 640px) {
+            .form-row { grid-template-columns: 1fr 1fr; }
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--white);
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .form-input::placeholder { color: rgba(255,255,255,0.4); }
+        
+        select.form-input { cursor: pointer; }
+        
+        select.form-input option {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-form button {
+            width: 100%;
+            margin-top: 8px;
+            background: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            padding: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--cream);
+            border-top: 1px solid var(--cream-dark);
+            padding: 64px 0 32px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        
+        .footer-brand p {
+            color: var(--warm-gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .footer-column h4 {
+            color: var(--charcoal);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: var(--warm-gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover { color: var(--accent); }
+        
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid var(--cream-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            font-size: 13px;
+            color: var(--warm-gray);
+        }
+        
+        @media (min-width: 640px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(245, 241, 235, 0.98);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content {
+            background: var(--white);
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: var(--white);
+            border: 1px solid var(--cream-dark);
+            color: var(--charcoal);
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+        }
+        
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 768px) {
+            .modal-grid { grid-template-columns: 1.2fr 1fr; }
+        }
+        
+        .modal-image {
+            background: var(--cream);
+            min-height: 300px;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-info {
+            padding: 40px;
+        }
+        
+        .modal-country {
+            color: var(--accent);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .modal-location {
+            color: var(--warm-gray);
+            font-size: 15px;
+            margin-bottom: 32px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+        
+        .option-label {
+            display: block;
+            color: var(--charcoal);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .option-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--cream-dark);
+            background: var(--white);
+            color: var(--charcoal);
+            font-size: 15px;
+            cursor: pointer;
+        }
+        
+        .option-select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .modal-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 32px 0;
+        }
+        
+        .total-label {
+            color: var(--warm-gray);
+            font-size: 14px;
+        }
+        
+        .total-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            color: var(--accent);
+        }
+        
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .btn-dark {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 16px;
+            border: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-dark:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .modal-note {
+            text-align: center;
+            color: var(--warm-gray);
+            font-size: 13px;
+            margin-top: 20px;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav class="nav">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <div class="logo-mark">RF</div>
+                <div class="logo-text">
+                    <h1>RODOLFO FERNÁNDEZ</h1>
+                    <p>Fotografía de Viajes</p>
+                </div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#gallery">Galería</a>
+                <a href="#quality">Ediciones</a>
+                <a href="#about">Sobre mí</a>
+                <a href="#contact" class="btn-nav">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge animate-fade">Fotógrafo Mexicano</span>
+            <h2 class="animate-fade" style="animation-delay: 0.1s;">
+                Lugares que<br><span>guardan memoria</span>
+            </h2>
+            <p class="animate-fade" style="animation-delay: 0.2s;">
+                Desde basílicas centenarias y calles empedradas europeas hasta rincones naturales de quietud. 
+                Capturo la atmósfera de lugares atemporales para coleccionistas y amantes del arte.
+            </p>
+            <div class="hero-buttons animate-fade" style="animation-delay: 0.3s;">
+                <a href="#gallery" class="btn-primary">Explorar colección</a>
+                <a href="#about" class="btn-secondary">Conoce al artista</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros de Países -->
+    <div class="filters">
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterGallery('all')">Todas</button>
+            <button class="filter-btn" onclick="filterGallery('italia')">🇮🇹 Italia</button>
+            <button class="filter-btn" onclick="filterGallery('vaticano')">🇻🇦 Vaticano</button>
+            <button class="filter-btn" onclick="filterGallery('belgica')">🇧🇪 Bélgica</button>
+            <button class="filter-btn" onclick="filterGallery('holanda')">🇳🇱 Holanda</button>
+            <button class="filter-btn" onclick="filterGallery('francia')">🇫🇷 Francia</button>
+            <button class="filter-btn" onclick="filterGallery('espana')">🇪🇸 España</button>
+            <button class="filter-btn" onclick="filterGallery('austria')">🇦🇹 Austria</button>
+            <button class="filter-btn" onclick="filterGallery('portugal')">🇵🇹 Portugal</button>
+            <button class="filter-btn" onclick="filterGallery('suiza')">🇨🇭 Suiza</button>
+            <button class="filter-btn" onclick="filterGallery('uk')">🇬🇧 UK</button>
+            <button class="filter-btn" onclick="filterGallery('alemania')">🇩🇪 Alemania</button>
+            <button class="filter-btn" onclick="filterGallery('grecia')">🇬🇷 Grecia</button>
+            <button class="filter-btn" onclick="filterGallery('turquia')">🇹🇷 Turquía</button>
+            <button class="filter-btn" onclick="filterGallery('naturaleza')">🌿 Naturaleza</button>
+        </div>
+    </div>
+
+    <!-- Galería -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <p>Colección Europea</p>
+                <h2>Obras Disponibles</h2>
+                <p class="subtitle">Cada fotografía está disponible en ediciones limitadas de 25 copias. Impresas en papel museo con certificado de autenticidad firmado.</p>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Fotos generadas por JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Ediciones -->
+    <section class="quality" id="quality">
+        <div class="container">
+            <div class="quality-grid">
+                <div class="quality-image animate-fade">
+                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e35a6?w=800&q=80" alt="Impresión de calidad museo">
+                </div>
+                <div class="quality-content animate-fade">
+                    <p style="color: var(--accent); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Calidad Museo</p>
+                    <h3>Ediciones que <span>perduran</span></h3>
+                    <p>Cada obra es impresa individualmente con los más altos estándares de calidad para garantizar su conservación por generaciones.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">1</div>
+                            <div>
+                                <h4>Papel Fine Art</h4>
+                                <p>100% algodón libre de ácido, 310gsm. Textura que realza cada detalle.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">2</div>
+                            <div>
+                                <h4>Tintas de Archivo</h4>
+                                <p>Pigmentos que garantizan más de 100 años de permanencia cromática.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">3</div>
+                            <div>
+                                <h4>Certificado de Autenticidad</h4>
+                                <p>Cada obra incluye certificado firmado con número de edición y detalles técnicos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quality-cta">
+                        <p class="price">Desde €85</p>
+                        <p>Disponible en múltiples tamaños · Envío internacional · Desde México</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre mí - CON FOTO REAL -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-portrait animate-fade">
+                    <div class="portrait-frame">
+                        <!-- FOTO REAL DEL USUARIO - REEMPLAZAR URL -->
+                        <img src="/mnt/kimi/upload/image.png" 
+                             alt="Rodolfo Fernández - Fotógrafo Mexicano">
+                    </div>
+                    <div class="mexican-flag" title="Fotógrafo Mexicano">
+                        <svg viewBox="0 0 640 480">
+                            <path fill="#006847" d="M0 0h213.3v480H0z"/>
+                            <path fill="#fff" d="M213.3 0h213.4v480H213.3z"/>
+                            <path fill="#ce1126" d="M426.7 0H640v480H426.7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="about-content animate-fade">
+                    <p class="about-role">Fotógrafo Mexicano</p>
+                    <h2>Rodolfo <span>Fernández</span></h2>
+                    <p class="about-text">
+                        Soy un fotógrafo que encuentra inspiración en los lugares que guardan memoria — 
+                        desde basílicas centenarias y grandes monumentos europeos hasta parques tranquilos, 
+                        canales y árboles solitarios.
+                    </p>
+                    <p class="about-text">
+                        Mi trabajo está moldeado por los viajes, la curiosidad y el deseo de capturar 
+                        la atmósfera de un lugar más allá de su apariencia superficial. Ya sea frente 
+                        a la Basílica de San Pedro, paseando por Brujas, o en un rincón tranquilo de la naturaleza, 
+                        me atraen escenas que se sienten atemporales y terrenales.
+                    </p>
+                    <p class="about-text">
+                        La fotografía me permite coleccionar estos momentos de quietud, luz y textura, 
+                        y compartir el sentido de presencia que siento cuando estoy allí.
+                    </p>
+                    
+                    <div class="about-quote">
+                        "Busco escenas que se sienten atemporales, que invitan a pausar y sentir."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-icon">✦</div>
+            <h2>Iniciar conversación</h2>
+            <p>¿Interesado en una obra o tienes un proyecto en mente?</p>
+            
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="Nombre" required>
+                    <input type="email" class="form-input" placeholder="Email" required>
+                </div>
+                <div class="form-row">
+                    <select class="form-input">
+                        <option value="">¿Qué necesitas?</option>
+                        <option value="compra">Comprar una fotografía</option>
+                        <option value="edicion">Servicio de edición</option>
+                        <option value="encargo">Encargo personalizado</option>
+                        <option value="licencia">Licencia comercial</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                    <input type="text" class="form-input" placeholder="País de interés (opcional)">
+                </div>
+                <textarea class="form-input" placeholder="Cuéntame más sobre tu proyecto..." required></textarea>
+                <button type="submit">Enviar mensaje</button>
+            </form>
+            
+            <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; gap: 32px; font-size: 14px; color: rgba(255,255,255,0.5);">
+                <a href="mailto:rodolfo@fernandez.photo" style="color: inherit; text-decoration: none;">rodolfo@fernandez.photo</a>
+                <span>•</span>
+                <span>Ciudad de México</span>
+                <span>•</span>
+                <span>Envío mundial</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Rodolfo Fernández</h3>
+                    <p>Fotógrafo mexicano especializado en viajes y lugares que guardan memoria. Ediciones limitadas para coleccionistas.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Colecciones</h4>
+                    <ul>
+                        <li><a href="#" onclick="filterGallery('italia')">Italia</a></li>
+                        <li><a href="#" onclick="filterGallery('vaticano')">Vaticano</a></li>
+                        <li><a href="#" onclick="filterGallery('belgica')">Bélgica</a></li>
+                        <li><a href="#" onclick="filterGallery('naturaleza')">Naturaleza</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#gallery">Comprar fotos</a></li>
+                        <li><a href="#contact">Edición profesional</a></li>
+                        <li><a href="#contact">Licencias</a></li>
+                        <li><a href="#contact">Encargos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Conecta</h4>
+                    <ul>
+                        <li><a href="https://instagram.com/rfernandez.photo" target="_blank">Instagram</a></li>
+                        <li><a href="https://rodolfofer.picfair.com" target="_blank">Picfair</a></li>
+                        <li><a href="mailto:rodolfo@fernandez.photo">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Rodolfo Fernández. Todos los derechos reservados.</p>
+                <div>
+                    <a href="#" style="margin-right: 16px;">Términos</a>
+                    <a href="#">Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Compra -->
+    <div class="modal" id="buyModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(null)">×</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img id="modalImg" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <p class="modal-country" id="modalCountry"></p>
+                    <h3 class="modal-title" id="modalTitle"></h3>
+                    <p class="modal-location" id="modalLocation"></p>
+                    
+                    <div class="option-group">
+                        <label class="option-label">Tamaño</label>
+                        <select class="option-select" id="sizeSelect" onchange="updatePrice()">
+                            <option value="small">30 × 40 cm — €85</option>
+                            <option value="medium" selected>50 × 70 cm — €150</option>
+                            <option value="large">70 × 100 cm — €250</option>
+                            <option value="xlarge">100 × 140 cm — €450</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label class="option-label">Acabado</label>
+                        <select class="option-select" id="finishSelect" onchange="updatePrice()">
+                            <option value="print">Impresión sola</option>
+                            <option value="mounted">Montada en aluminio +€45</option>
+                            <option value="framed_black">Marco negro +€85</option>
+                            <option value="framed_wood">Marco madera natural +€95</option>
+                        </select>
+                    </div>
+                    
+                    <div class="modal-total">
+                        <span class="total-label">Total estimado</span>
+                        <span class="total-price" id="modalPrice">€150</span>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button class="btn-primary" onclick="inquire()" style="width: 100%; margin-bottom: 12px;">Solicitar información</button>
+                        <button class="btn-dark" onclick="closeModal(null)">Seguir explorando</button>
+                    </div>
+                    
+                    <p class="modal-note">Envío internacional desde México. Entrega 10-15 días hábiles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATOS DE FOTOS - REEMPLAZAR CON TUS URLS DE PICFAIR
+        const photos = [
+            // ITALIA
+            {
+                id: 1,
+                src: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80',
+                title: 'Coliseo al Amanecer',
+                location: 'Roma',
+                country: 'Italia',
+                category: 'italia',
+                price: 150
+            },
+            {
+                id: 2,
+                src: 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=800&q=80',
+                title: 'Venecia en Silencio',
+                location: 'Venecia',
+                country: 'Italia',
+                category: 'italia',
+                price: 150
+            },
+            {
+                id: 3,
+                src: 'https://images.unsplash.com/photo-1543429257-3eb0b8ee41b9?w=800&q=80',
+                title: 'Duomo de Florencia',
+                location: 'Florencia',
+                country: 'Italia',
+                category: 'italia',
+                price: 150
+            },
+            {
+                id: 4,
+                src: 'https://images.unsplash.com/photo-1529260830199-42c42dda5f3d?w=800&q=80',
+                title: 'Trastevere',
+                location: 'Roma',
+                country: 'Italia',
+                category: 'italia',
+                price: 120
+            },
+            
+            // VATICANO
+            {
+                id: 5,
+                src: 'https://images.unsplash.com/photo-1531572753322-ad0ce1f534da?w=800&q=80',
+                title: 'Basílica de San Pedro',
+                location: 'Ciudad del Vaticano',
+                country: 'Vaticano',
+                category: 'vaticano',
+                price: 180
+            },
+            {
+                id: 6,
+                src: 'https://images.unsplash.com/photo-1552423316-682f66423511?w=800&q=80',
+                title: 'Plaza San Pedro',
+                location: 'Vaticano',
+                country: 'Vaticano',
+                category: 'vaticano',
+                price: 180
+            },
+            
+            // BÉLGICA (Brujas mencionada en tu bio)
+            {
+                id: 7,
+                src: 'https://images.unsplash.com/photo-1516571137133-19b54990f4a4?w=800&q=80',
+                title: 'Canales de Brujas',
+                location: 'Brujas',
+                country: 'Bélgica',
+                category: 'belgica',
+                price: 150
+            },
+            {
+                id: 8,
+                src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+                title: 'Grand Place',
+                location: 'Bruselas',
+                country: 'Bélgica',
+                category: 'belgica',
+                price: 150
+            },
+            
+            // HOLANDA
+            {
+                id: 9,
+                src: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a2?w=800&q=80',
+                title: 'Canales de Ámsterdam',
+                location: 'Ámsterdam',
+                country: 'Holanda',
+                category: 'holanda',
+                price: 150
+            },
+            
+            // FRANCIA
+            {
+                id: 10,
+                src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80',
+                title: 'Torre Eiffel',
+                location: 'París',
+                country: 'Francia',
+                category: 'francia',
+                price: 150
+            },
+            
+            // ESPAÑA
+            {
+                id: 11,
+                src: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80',
+                title: 'Park Güell',
+                location: 'Barcelona',
+                country: 'España',
+                category: 'espana',
+                price: 150
+            },
+            
+            // AUSTRIA
+            {
+                id: 12,
+                src: 'https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=800&q=80',
+                title: 'Ópera de Viena',
+                location: 'Viena',
+                country: 'Austria',
+                category: 'austria',
+                price: 150
+            },
+            
+            // PORTUGAL
+            {
+                id: 13,
+                src: 'https://images.unsplash.com/photo-1555881400-74d7acaacd81?w=800&q=80',
+                title: 'Torre de Belém',
+                location: 'Lisboa',
+                country: 'Portugal',
+                category: 'portugal',
+                price: 150
+            },
+            
+            // SUIZA
+            {
+                id: 14,
+                src: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=800&q=80',
+                title: 'Alpes Suizos',
+                location: 'Interlaken',
+                country: 'Suiza',
+                category: 'suiza',
+                price: 150
+            },
+            
+            // UK
+            {
+                id: 15,
+                src: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80',
+                title: 'Big Ben',
+                location: 'Londres',
+                country: 'Reino Unido',
+                category: 'uk',
+                price: 150
+            },
+            
+            // ALEMANIA
+            {
+                id: 16,
+                src: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800&q=80',
+                title: 'Puerta de Brandeburgo',
+                location: 'Berlín',
+                country: 'Alemania',
+                category: 'alemania',
+                price: 150
+            },
+            
+            // GRECIA
+            {
+                id: 17,
+                src: 'https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=800&q=80',
+                title: 'Acrópolis',
+                location: 'Atenas',
+                country: 'Grecia',
+                category: 'grecia',
+                price: 150
+            },
+            
+            // TURQUÍA
+            {
+                id: 18,
+                src: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=80',
+                title: 'Santa Sofía',
+                location: 'Estambul',
+                country: 'Turquía',
+                category: 'turquia',
+                price: 150
+            },
+            
+            // NATURALEZA
+            {
+                id: 19,
+                src: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80',
+                title: 'Árbol Solitario',
+                location: 'Toscana',
+                country: 'Italia',
+                category: 'naturaleza',
+                price: 120
+            },
+            {
+                id: 20,
+                src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80',
+                title: 'Bosque de Hayas',
+                location: 'Baviera',
+                country: 'Alemania',
+                category: 'naturaleza',
+                price: 120
+            }
+        ];
+
+        let currentPhoto = null;
+
+        function renderGallery(filter = 'all') {
+            const grid = document.getElementById('galleryGrid');
+            const filtered = filter === 'all' ? photos : photos.filter(p => p.category === filter);
+            
+            grid.innerHTML = filtered.map((photo, index) => `
+                <div class="photo-card animate-fade" style="animation-delay: ${index * 0.05}s" onclick="openModal(${photo.id})">
+                    <img src="${photo.src}" alt="${photo.title}" loading="lazy">
+                    <div class="photo-overlay">
+                        <div class="photo-info">
+                            <p class="photo-country">${photo.country}</p>
+                            <h4 class="photo-title">${photo.title}</h4>
+                            <p class="photo-location">${photo.location}</p>
+                            <p class="photo-price">€${photo.price}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGallery(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderGallery(category);
+            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openModal(id) {
+            currentPhoto = photos.find(p => p.id === id);
+            document.getElementById('modalImg').src = currentPhoto.src;
+            document.getElementById('modalCountry').textContent = currentPhoto.country;
+            document.getElementById('modalTitle').textContent = currentPhoto.title;
+            document.getElementById('modalLocation').textContent = currentPhoto.location;
+            updatePrice();
+            document.getElementById('buyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'buyModal') {
+                document.getElementById('buyModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function updatePrice() {
+            const sizes = { small: 85, medium: 150, large: 250, xlarge: 450 };
+            const finishes = { print: 0, mounted: 45, framed_black: 85, framed_wood: 95 };
+            
+            const size = document.getElementById('sizeSelect').value;
+            const finish = document.getElementById('finishSelect').value;
+            
+            const total = sizes[size] + finishes[finish];
+            document.getElementById('modalPrice').textContent = `€${total}`;
+        }
+
+        function inquire() {
+            const size = document.getElementById('sizeSelect').options[document.getElementById('sizeSelect').selectedIndex].text;
+            const finish = document.getElementById('finishSelect').options[document.getElementById('finishSelect').selectedIndex].text;
+            const price = document.getElementById('modalPrice').textContent;
+            
+            const subject = `Consulta: ${currentPhoto.title} (${currentPhoto.country})`;
+            const body = `Hola Rodolfo,
+
+Me interesa la fotografía:
+
+Título: ${currentPhoto.title}
+Ubicación: ${currentPhoto.location}, ${currentPhoto.country}
+Tamaño: ${size}
+Acabado: ${finish}
+Presupuesto: ${price}
+
+Por favor contáctame para finalizar la compra.
+
+Saludos,`;
+            
+            window.location.href = `mailto:rodolfo@fernandez.photo?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const original = btn.textContent;
+            
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.textContent = '✓ Mensaje enviado';
+                setTimeout(() => {
+                    e.target.reset();
+                    btn.textContent = original;
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGallery();
+        });
     </script>
-    <style>
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: #F5F0E6;
-            color: #2C2419;
+</body>
+</html>            color: #2C2419;
         }
         
         .font-cinzel { font-family: 'Cinzel', serif; }
