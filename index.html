@@ -3,1581 +3,882 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodolfo Fernández | Fotografía de Viajes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>R. Fernández | Edición Profesional Accesible</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'syne': ['Syne', 'sans-serif'],
+                        'space': ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --cream: #F5F1EB;
-            --cream-dark: #E8E2D9;
-            --charcoal: #2C3E50;
-            --warm-gray: #5D6D7E;
-            --accent: #8E6E53;
-            --gold: #B8956B;
-            --white: #FFFFFF;
-            --mexican-teal: #006847;
-            --mexican-red: #CE1126;
+        * {
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--cream);
-            color: var(--charcoal);
-            line-height: 1.6;
+            font-family: 'Space Grotesk', sans-serif;
+            background: #fafafa;
+            overflow-x: hidden;
         }
         
-        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        /* Gradientes vibrantes */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradient-shift 8s ease infinite;
+        }
         
-        /* Navegación */
-        .nav {
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Fondo animado */
+        .bg-mesh {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            background: rgba(245, 241, 235, 0.95);
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(at 40% 20%, hsla(260,100%,70%,0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(189,100%,56%,0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(340,100%,76%,0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, hsla(280,100%,70%,0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(220,100%,70%,0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, hsla(320,100%,70%,0.15) 0px, transparent 50%);
+            animation: mesh-move 20s ease infinite;
+        }
+        
+        @keyframes mesh-move {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(142, 110, 83, 0.1);
-            z-index: 1000;
-            padding: 16px 0;
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
+        /* Cards brillantes */
+        .glow-card {
+            background: white;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+                0 20px 40px -10px rgba(102, 126, 234, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .logo-mark {
-            width: 44px;
-            height: 44px;
-            border: 1.5px solid var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            font-weight: 500;
-            background: var(--white);
+        .glow-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px -10px rgba(102, 126, 234, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+                0 0 60px -10px rgba(102, 126, 234, 0.2);
         }
         
-        .logo-text h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            letter-spacing: 1px;
-            color: var(--charcoal);
-            font-weight: 500;
-        }
-        
-        .logo-text p {
-            font-size: 10px;
-            letter-spacing: 2px;
-            color: var(--warm-gray);
-            text-transform: uppercase;
-        }
-        
-        .nav-links {
-            display: none;
-        }
-        
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-                gap: 32px;
-                align-items: center;
-            }
-        }
-        
-        .nav-links a {
-            color: var(--warm-gray);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover { color: var(--accent); }
-        
-        .btn-nav {
-            background: var(--accent);
-            color: var(--white);
-            padding: 10px 24px;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .btn-nav:hover {
-            background: var(--charcoal);
-            transform: translateY(-1px);
-        }
-        
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Botón brillante */
+        .btn-glow {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             position: relative;
-            padding-top: 100px;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238E6E53' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            max-width: 800px;
-            padding: 0 24px;
-        }
-        
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--white);
-            border: 1px solid var(--cream-dark);
-            color: var(--accent);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 32px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .hero h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(48px, 8vw, 88px);
-            font-weight: 300;
-            line-height: 1;
-            margin-bottom: 24px;
-            color: var(--charcoal);
-        }
-        
-        .hero h2 span { 
-            color: var(--accent); 
-            font-style: italic; 
-            font-weight: 400;
-        }
-        
-        .hero p {
-            color: var(--warm-gray);
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            font-weight: 300;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: center;
-        }
-        
-        @media (min-width: 640px) {
-            .hero-buttons {
-                flex-direction: row;
-                justify-content: center;
-            }
-        }
-        
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-            padding: 16px 40px;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(142, 110, 83, 0.3);
-        }
-        
-        .btn-primary:hover {
-            background: var(--charcoal);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
-        }
-        
-        .btn-secondary {
-            padding: 16px 40px;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            background: transparent;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-secondary:hover { 
-            background: var(--accent); 
-            color: var(--white); 
-        }
-        
-        /* Filtros */
-        .filters {
-            background: var(--white);
-            border-bottom: 1px solid var(--cream-dark);
-            padding: 20px 0;
-            position: sticky;
-            top: 77px;
-            z-index: 100;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .filters::-webkit-scrollbar { display: none; }
-        
-        .filter-container {
-            display: flex;
-            gap: 12px;
-            min-width: max-content;
-            padding: 0 24px;
-        }
-        
-        @media (min-width: 768px) {
-            .filter-container {
-                justify-content: center;
-                padding: 0;
-            }
-        }
-        
-        .filter-btn {
-            padding: 10px 24px;
-            border-radius: 100px;
-            border: 1px solid var(--cream-dark);
-            background: var(--white);
-            color: var(--warm-gray);
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-        
-        .filter-btn:hover, .filter-btn.active {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--cream);
-        }
-        
-        /* Galería masonry */
-        .gallery {
-            padding: 80px 0;
-            background: var(--white);
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .section-header p {
-            color: var(--accent);
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-        
-        .section-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(36px, 5vw, 52px);
-            font-weight: 400;
-            color: var(--charcoal);
-            margin-bottom: 16px;
-        }
-        
-        .section-header .subtitle {
-            color: var(--warm-gray);
-            font-size: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-        
-        .gallery-grid {
-            column-count: 1;
-            column-gap: 24px;
-        }
-        
-        @media (min-width: 640px) { .gallery-grid { column-count: 2; } }
-        @media (min-width: 1024px) { .gallery-grid { column-count: 3; } }
-        
-        .photo-card {
-            break-inside: avoid;
-            margin-bottom: 24px;
-            position: relative;
-            background: var(--white);
-            border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: transform 0.4s, box-shadow 0.4s;
+            transition: all 0.3s;
         }
         
-        .photo-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-        }
-        
-        .photo-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.6s;
-        }
-        
-        .photo-card:hover img { transform: scale(1.03); }
-        
-        .photo-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(44, 62, 80, 0.9) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 24px;
-        }
-        
-        .photo-card:hover .photo-overlay { opacity: 1; }
-        
-        .photo-info {
-            transform: translateY(16px);
-            transition: transform 0.4s;
-        }
-        
-        .photo-card:hover .photo-info { transform: translateY(0); }
-        
-        .photo-country {
-            color: var(--gold);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-        
-        .photo-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            font-style: italic;
-            color: var(--white);
-            margin-bottom: 4px;
-        }
-        
-        .photo-location {
-            color: rgba(255,255,255,0.7);
-            font-size: 13px;
-            margin-bottom: 12px;
-        }
-        
-        .photo-price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            color: var(--gold);
-        }
-        
-        /* Ediciones */
-        .quality {
-            padding: 100px 0;
-            background: var(--cream);
-        }
-        
-        .quality-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 64px;
-            align-items: center;
-        }
-        
-        @media (min-width: 768px) {
-            .quality-grid { grid-template-columns: 1fr 1fr; }
-        }
-        
-        .quality-image {
-            position: relative;
-            background: var(--white);
-            padding: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-        
-        .quality-image::before {
+        .btn-glow::before {
             content: '';
             position: absolute;
-            inset: 6px;
-            border: 1px solid var(--cream-dark);
-            pointer-events: none;
-        }
-        
-        .quality-image img {
+            top: 0;
+            left: -100%;
             width: 100%;
-            height: 450px;
-            object-fit: cover;
-            filter: grayscale(20%);
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
         }
         
-        .quality-content h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 42px;
-            font-weight: 300;
-            color: var(--charcoal);
-            margin-bottom: 8px;
-            line-height: 1.2;
+        .btn-glow:hover::before {
+            left: 100%;
         }
         
-        .quality-content h3 span { 
-            color: var(--accent); 
-            font-style: italic; 
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(102, 126, 234, 0.5);
         }
         
-        .quality-content > p {
-            color: var(--warm-gray);
-            font-size: 16px;
-            margin-bottom: 40px;
+        /* Precio tag */
+        .price-pop {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            transform: rotate(-3deg);
+            box-shadow: 0 10px 30px -5px rgba(245, 87, 108, 0.4);
         }
         
-        .feature-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
+        /* Comparador mejorado */
+        .compare-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
         }
         
-        .feature-item {
-            display: flex;
-            gap: 20px;
+        .compare-slider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: white;
+            cursor: ew-resize;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
         
-        .feature-icon {
+        .compare-slider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 48px;
             height: 48px;
-            background: var(--white);
-            border: 1px solid var(--cream-dark);
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            color: var(--accent);
-            flex-shrink: 0;
         }
         
-        .feature-item h4 {
-            font-size: 16px;
-            color: var(--charcoal);
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-        
-        .feature-item p {
-            color: var(--warm-gray);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        .quality-cta {
-            margin-top: 40px;
-            padding-top: 32px;
-            border-top: 1px solid var(--cream-dark);
-        }
-        
-        .quality-cta .price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-        
-        .quality-cta p {
-            color: var(--warm-gray);
-            font-size: 14px;
-        }
-        
-        /* Sobre mí - FOTO REAL DEL USUARIO */
-        .about {
-            padding: 100px 0;
-            background: var(--white);
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 64px;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        @media (min-width: 768px) {
-            .about-grid { grid-template-columns: 300px 1fr; }
-        }
-        
-        .about-portrait {
-            position: relative;
-            text-align: center;
-        }
-        
-        .portrait-frame {
-            width: 280px;
-            height: 280px;
-            margin: 0 auto;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 8px solid var(--white);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            position: relative;
-        }
-        
-        .portrait-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-        }
-        
-        .mexican-flag {
+        .compare-slider::before {
+            content: '↔';
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--white);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        
-        .about-content h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 42px;
-            font-weight: 300;
-            color: var(--charcoal);
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-        
-        .about-content h2 span { 
-            color: var(--accent); 
-            font-style: italic; 
-        }
-        
-        .about-role {
-            color: var(--accent);
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-        
-        .about-text {
-            color: var(--warm-gray);
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-        
-        .about-quote {
-            margin-top: 32px;
-            padding: 24px;
-            background: var(--cream);
-            border-left: 3px solid var(--accent);
-            font-family: 'Cormorant Garamond', serif;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11;
+            color: #667eea;
             font-size: 20px;
-            font-style: italic;
-            color: var(--charcoal);
+            font-weight: bold;
         }
         
-        /* Contacto */
-        .contact {
-            padding: 100px 0;
-            background: var(--charcoal);
-            color: var(--white);
-            text-align: center;
+        /* Partículas flotantes */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
         }
         
-        .contact-icon {
-            font-size: 48px;
-            color: var(--gold);
-            margin-bottom: 16px;
-            opacity: 0.8;
+        /* Scroll indicator */
+        .scroll-hint {
+            animation: bounce 2s infinite;
         }
         
-        .contact h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
-            font-weight: 300;
-            margin-bottom: 8px;
-        }
-        
-        .contact > p {
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 48px;
-            font-size: 16px;
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        
-        @media (min-width: 640px) {
-            .form-row { grid-template-columns: 1fr 1fr; }
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--white);
-            font-size: 15px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-        
-        .form-input::placeholder { color: rgba(255,255,255,0.4); }
-        
-        select.form-input { cursor: pointer; }
-        
-        select.form-input option {
-            background: var(--charcoal);
-            color: var(--white);
-        }
-        
-        textarea.form-input {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .contact-form button {
-            width: 100%;
-            margin-top: 8px;
-            background: var(--gold);
-            color: var(--charcoal);
-            border: none;
-            padding: 16px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .contact-form button:hover {
-            background: var(--white);
-            transform: translateY(-2px);
-        }
-        
-        /* Footer */
-        .footer {
-            background: var(--cream);
-            border-top: 1px solid var(--cream-dark);
-            padding: 64px 0 32px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-        
-        @media (min-width: 768px) {
-            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
-        }
-        
-        .footer-brand h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-        
-        .footer-brand p {
-            color: var(--warm-gray);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        .footer-column h4 {
-            color: var(--charcoal);
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column a {
-            color: var(--warm-gray);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        
-        .footer-column a:hover { color: var(--accent); }
-        
-        .footer-bottom {
-            padding-top: 32px;
-            border-top: 1px solid var(--cream-dark);
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: center;
-            font-size: 13px;
-            color: var(--warm-gray);
-        }
-        
-        @media (min-width: 640px) {
-            .footer-bottom {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
+        /* Loading */
+        .loader {
             position: fixed;
             inset: 0;
-            background: rgba(245, 241, 235, 0.98);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            overflow-y: auto;
-        }
-        
-        .modal.active { display: flex; }
-        
-        .modal-content {
-            background: var(--white);
-            max-width: 900px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.2);
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 44px;
-            height: 44px;
-            background: var(--white);
-            border: 1px solid var(--cream-dark);
-            color: var(--charcoal);
-            font-size: 28px;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        
-        .modal-close:hover {
-            background: var(--accent);
-            color: var(--white);
-            border-color: var(--accent);
-        }
-        
-        .modal-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-        
-        @media (min-width: 768px) {
-            .modal-grid { grid-template-columns: 1.2fr 1fr; }
-        }
-        
-        .modal-image {
-            background: var(--cream);
-            min-height: 300px;
-        }
-        
-        .modal-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .modal-info {
-            padding: 40px;
-        }
-        
-        .modal-country {
-            color: var(--accent);
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-        
-        .modal-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
-            font-weight: 400;
-            color: var(--charcoal);
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-        
-        .modal-location {
-            color: var(--warm-gray);
-            font-size: 15px;
-            margin-bottom: 32px;
-        }
-        
-        .option-group {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--cream-dark);
-        }
-        
-        .option-label {
-            display: block;
-            color: var(--charcoal);
-            font-size: 13px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .option-select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--cream-dark);
-            background: var(--white);
-            color: var(--charcoal);
-            font-size: 15px;
-            cursor: pointer;
-        }
-        
-        .option-select:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        
-        .modal-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin: 32px 0;
-        }
-        
-        .total-label {
-            color: var(--warm-gray);
-            font-size: 14px;
-        }
-        
-        .total-price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
-            color: var(--accent);
-        }
-        
-        .modal-buttons {
+            background: white;
+            z-index: 9999;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
         }
         
-        .btn-dark {
-            background: var(--charcoal);
-            color: var(--white);
-            padding: 16px;
-            border: none;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-dark:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-        }
-        
-        .modal-note {
-            text-align: center;
-            color: var(--warm-gray);
-            font-size: 13px;
-            margin-top: 20px;
-        }
-        
-        /* Animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade {
+        .loader.hidden {
             opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
+            visibility: hidden;
+        }
+        
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Badge animado */
+        .badge-pulse {
+            animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
+        }
+        
+        /* Reveal animation */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Sticker descuento */
+        .sticker {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #f5576c, #f093fb);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            transform: rotate(12deg);
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+            z-index: 10;
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner mb-4"></div>
+        <p class="font-syne text-gray-600 tracking-wider">Cargando experiencia...</p>
+    </div>
+
+    <!-- Background -->
+    <div class="bg-mesh"></div>
+
+    <!-- Partículas decorativas -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="particle w-4 h-4 bg-purple-400 top-20 left-10" style="animation-delay: 0s;"></div>
+        <div class="particle w-6 h-6 bg-pink-400 top-40 right-20" style="animation-delay: 1s;"></div>
+        <div class="particle w-3 h-3 bg-blue-400 bottom-40 left-1/4" style="animation-delay: 2s;"></div>
+        <div class="particle w-5 h-5 bg-indigo-400 top-1/3 right-1/3" style="animation-delay: 3s;"></div>
+    </div>
 
     <!-- Navegación -->
-    <nav class="nav">
-        <div class="container nav-content">
-            <a href="#" class="logo">
-                <div class="logo-mark">RF</div>
-                <div class="logo-text">
-                    <h1>RODOLFO FERNÁNDEZ</h1>
-                    <p>Fotografía de Viajes</p>
+    <nav class="fixed w-full z-50 top-4 px-4">
+        <div class="max-w-6xl mx-auto glass rounded-2xl px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
+                    RF
                 </div>
-            </a>
-            
-            <div class="nav-links">
-                <a href="#gallery">Galería</a>
-                <a href="#quality">Ediciones</a>
-                <a href="#about">Sobre mí</a>
-                <a href="#contact" class="btn-nav">Contacto</a>
+                <span class="font-syne font-bold text-gray-800 text-lg">R. Fernández</span>
             </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#servicios" class="hover:text-purple-600 transition-colors">Servicios</a>
+                <a href="#trabajos" class="hover:text-purple-600 transition-colors">Trabajos</a>
+                <a href="#precios" class="hover:text-purple-600 transition-colors">Precios</a>
+                <a href="#contacto" class="btn-glow text-white px-6 py-2.5 rounded-full text-sm font-semibold">
+                    Empezar Proyecto
+                </a>
+            </div>
+            
+            <button class="md:hidden text-gray-700" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <span class="hero-badge animate-fade">Fotógrafo Mexicano</span>
-            <h2 class="animate-fade" style="animation-delay: 0.1s;">
-                Lugares que<br><span>guardan memoria</span>
-            </h2>
-            <p class="animate-fade" style="animation-delay: 0.2s;">
-                Desde basílicas centenarias y calles empedradas europeas hasta rincones naturales de quietud. 
-                Capturo la atmósfera de lugares atemporales para coleccionistas y amantes del arte.
-            </p>
-            <div class="hero-buttons animate-fade" style="animation-delay: 0.3s;">
-                <a href="#gallery" class="btn-primary">Explorar colección</a>
-                <a href="#about" class="btn-secondary">Conoce al artista</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Filtros de Países -->
-    <div class="filters">
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterGallery('all')">Todas</button>
-            <button class="filter-btn" onclick="filterGallery('italia')">🇮🇹 Italia</button>
-            <button class="filter-btn" onclick="filterGallery('vaticano')">🇻🇦 Vaticano</button>
-            <button class="filter-btn" onclick="filterGallery('belgica')">🇧🇪 Bélgica</button>
-            <button class="filter-btn" onclick="filterGallery('holanda')">🇳🇱 Holanda</button>
-            <button class="filter-btn" onclick="filterGallery('francia')">🇫🇷 Francia</button>
-            <button class="filter-btn" onclick="filterGallery('espana')">🇪🇸 España</button>
-            <button class="filter-btn" onclick="filterGallery('austria')">🇦🇹 Austria</button>
-            <button class="filter-btn" onclick="filterGallery('portugal')">🇵🇹 Portugal</button>
-            <button class="filter-btn" onclick="filterGallery('suiza')">🇨🇭 Suiza</button>
-            <button class="filter-btn" onclick="filterGallery('uk')">🇬🇧 UK</button>
-            <button class="filter-btn" onclick="filterGallery('alemania')">🇩🇪 Alemania</button>
-            <button class="filter-btn" onclick="filterGallery('grecia')">🇬🇷 Grecia</button>
-            <button class="filter-btn" onclick="filterGallery('turquia')">🇹🇷 Turquía</button>
-            <button class="filter-btn" onclick="filterGallery('naturaleza')">🌿 Naturaleza</button>
-        </div>
-    </div>
-
-    <!-- Galería -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-header">
-                <p>Colección Europea</p>
-                <h2>Obras Disponibles</h2>
-                <p class="subtitle">Cada fotografía está disponible en ediciones limitadas de 25 copias. Impresas en papel museo con certificado de autenticidad firmado.</p>
-            </div>
+    <!-- Hero Impactante -->
+    <section class="min-h-screen flex items-center justify-center pt-24 pb-12 px-4 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
             
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Fotos generadas por JavaScript -->
+            <!-- Badge -->
+            <div class="reveal-up mb-6 inline-block">
+                <span class="badge-pulse bg-white/80 backdrop-blur px-6 py-2 rounded-full text-sm font-semibold text-purple-600 border border-purple-200">
+                    ✨ Edición Profesional Desde €3
+                </span>
+            </div>
+
+            <!-- Título principal -->
+            <h1 class="reveal-up font-syne text-6xl md:text-8xl lg:text-9xl font-bold mb-6 leading-none" style="transition-delay: 0.1s;">
+                <span class="gradient-text">Transforma</span><br>
+                <span class="text-gray-800">tus fotos</span>
+            </h1>
+
+            <!-- Subtítulo -->
+            <p class="reveal-up text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-8 font-light" style="transition-delay: 0.2s;">
+                Edición profesional accesible para creadores, influencers y fotógrafos. 
+                Resultados de calidad premium a precios que te sorprenderán.
+            </p>
+
+            <!-- Stats -->
+            <div class="reveal-up flex flex-wrap justify-center gap-8 mb-10 text-sm font-medium text-gray-500" style="transition-delay: 0.3s;">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    Entrega 24-48h
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></span>
+                    +500 fotos editadas
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-pink-400 rounded-full animate-pulse"></span>
+                    100% Satisfacción
+                </div>
+            </div>
+
+            <!-- CTA Principal -->
+            <div class="reveal-up flex flex-col sm:flex-row gap-4 justify-center items-center" style="transition-delay: 0.4s;">
+                <a href="#servicios" class="btn-glow text-white px-10 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-purple-500/30 transition-all">
+                    Ver Servicios →
+                </a>
+                <a href="#trabajos" class="glass px-8 py-4 rounded-full font-semibold text-gray-700 hover:bg-white/90 transition-all flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center text-white text-xs">
+                        ▶
+                    </span>
+                    Ver Antes/Después
+                </a>
+            </div>
+
+            <!-- Preview flotante -->
+            <div class="reveal-up mt-16 relative" style="transition-delay: 0.5s;">
+                <div class="relative max-w-3xl mx-auto">
+                    <div class="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-yellow-300 to-orange-400 rounded-2xl rotate-12 opacity-80 animate-float"></div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-60 animate-float" style="animation-delay: 1s;"></div>
+                    
+                    <div class="glass rounded-3xl p-2 shadow-2xl relative z-10">
+                        <div class="compare-wrapper h-[400px] md:h-[500px]" id="heroCompare">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80" alt="Editado" class="absolute inset-0 w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80&sat=-100&con=0.8&bri=10" alt="Original" class="absolute inset-0 w-full h-full object-cover" id="heroBefore" style="clip-path: inset(0 50% 0 0); filter: grayscale(40%) contrast(0.9);">
+                            <div class="compare-slider" style="left: 50%;"></div>
+                            
+                            <span class="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-full text-xs font-bold backdrop-blur">ORIGINAL</span>
+                            <span class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg">EDITADO ✨</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-4 text-gray-500 text-sm">Arrastra para ver la magia →</p>
+            </div>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-hint">
+            <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center pt-2">
+                <div class="w-1.5 h-3 bg-gray-400 rounded-full animate-bounce"></div>
             </div>
         </div>
     </section>
 
-    <!-- Ediciones -->
-    <section class="quality" id="quality">
-        <div class="container">
-            <div class="quality-grid">
-                <div class="quality-image animate-fade">
-                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e35a6?w=800&q=80" alt="Impresión de calidad museo">
-                </div>
-                <div class="quality-content animate-fade">
-                    <p style="color: var(--accent); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Calidad Museo</p>
-                    <h3>Ediciones que <span>perduran</span></h3>
-                    <p>Cada obra es impresa individualmente con los más altos estándares de calidad para garantizar su conservación por generaciones.</p>
+    <!-- Servicios -->
+    <section id="servicios" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal-up">
+                <span class="text-purple-600 font-semibold tracking-wider uppercase text-sm">Servicios</span>
+                <h2 class="font-syne text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">Elige tu pack</h2>
+                <p class="text-gray-600 max-w-xl mx-auto">Precios transparentes, sin sorpresas. Calidad profesional al alcance de todos.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Pack Básico -->
+                <div class="glow-card rounded-3xl p-8 relative reveal-up">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center text-white text-2xl mb-6">
+                        ✨
+                    </div>
+                    <h3 class="font-syne text-2xl font-bold text-gray-800 mb-2">Retoque Básico</h3>
+                    <p class="text-gray-500 text-sm mb-6">Correcciones esenciales para redes sociales</p>
                     
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <div class="feature-icon">1</div>
-                            <div>
-                                <h4>Papel Fine Art</h4>
-                                <p>100% algodón libre de ácido, 310gsm. Textura que realza cada detalle.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">2</div>
-                            <div>
-                                <h4>Tintas de Archivo</h4>
-                                <p>Pigmentos que garantizan más de 100 años de permanencia cromática.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">3</div>
-                            <div>
-                                <h4>Certificado de Autenticidad</h4>
-                                <p>Cada obra incluye certificado firmado con número de edición y detalles técnicos.</p>
-                            </div>
-                        </div>
+                    <div class="mb-6">
+                        <span class="font-syne text-5xl font-bold text-gray-800">€3</span>
+                        <span class="text-gray-500">/foto</span>
                     </div>
                     
-                    <div class="quality-cta">
-                        <p class="price">Desde €85</p>
-                        <p>Disponible en múltiples tamaños · Envío internacional · Desde México</p>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+                            Corrección de exposición
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+                            Ajuste de color básico
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+                            Recorte y alineación
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+                            Filtros profesionales
+                        </li>
+                    </ul>
+                    
+                    <button onclick="selectService('basico')" class="w-full py-3 rounded-xl border-2 border-gray-200 font-semibold text-gray-700 hover:border-purple-500 hover:text-purple-600 transition-all">
+                        Seleccionar
+                    </button>
+                </div>
+
+                <!-- Pack Pro (Popular) -->
+                <div class="glow-card rounded-3xl p-8 relative reveal-up transform md:-translate-y-4" style="transition-delay: 0.1s;">
+                    <div class="sticker">POPULAR</div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-2xl mb-6">
+                        🎨
+                    </div>
+                    <h3 class="font-syne text-2xl font-bold text-gray-800 mb-2">Retoque Pro</h3>
+                    <p class="text-gray-500 text-sm mb-6">Edición completa para contenido profesional</p>
+                    
+                    <div class="mb-6">
+                        <span class="font-syne text-5xl font-bold text-gray-800">€6</span>
+                        <span class="text-gray-500">/foto</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs">✓</span>
+                            Todo lo del pack básico
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs">✓</span>
+                            Retoque de piel avanzado
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs">✓</span>
+                            Color grading personalizado
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs">✓</span>
+                            Eliminación de objetos
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs">✓</span>
+                            2 revisiones incluidas
+                        </li>
+                    </ul>
+                    
+                    <button onclick="selectService('pro')" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                        Seleccionar
+                    </button>
+                </div>
+
+                <!-- Pack Premium -->
+                <div class="glow-card rounded-3xl p-8 relative reveal-up" style="transition-delay: 0.2s;">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-2xl mb-6">
+                        👑
+                    </div>
+                    <h3 class="font-syne text-2xl font-bold text-gray-800 mb-2">Edición Premium</h3>
+                    <p class="text-gray-500 text-sm mb-6">Máxima calidad para editoriales y marcas</p>
+                    
+                    <div class="mb-6">
+                        <span class="font-syne text-5xl font-bold text-gray-800">€10</span>
+                        <span class="text-gray-500">/foto</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs">✓</span>
+                            Todo lo del pack Pro
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs">✓</span>
+                            Dodge & Burn profesional
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs">✓</span>
+                            Frecuencia separada
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs">✓</span>
+                            Composición avanzada
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs">✓</span>
+                            Revisiones ilimitadas
+                        </li>
+                    </ul>
+                    
+                    <button onclick="selectService('premium')" class="w-full py-3 rounded-xl border-2 border-orange-400 font-semibold text-orange-600 hover:bg-orange-50 transition-all">
+                        Seleccionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Descuento por volumen -->
+            <div class="mt-12 glass rounded-2xl p-6 text-center reveal-up">
+                <p class="text-gray-600">
+                    <span class="font-bold text-purple-600">💡 Descuento por volumen:</span> 
+                    20+ fotos → 15% OFF | 50+ fotos → 25% OFF | 100+ fotos → 35% OFF
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trabajos -->
+    <section id="trabajos" class="py-20 px-4 bg-white/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 reveal-up">
+                <span class="text-purple-600 font-semibold tracking-wider uppercase text-sm">Portafolio</span>
+                <h2 class="font-syne text-4xl md:text-5xl font-bold text-gray-800 mt-2">Resultados reales</h2>
+            </div>
+
+            <!-- Grid de comparaciones -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Trabajo 1 -->
+                <div class="reveal-up">
+                    <div class="compare-wrapper h-[400px] mb-4" id="work1">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80" class="absolute inset-0 w-full h-full object-cover" alt="Después">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80&sat=-100&bri=10" class="absolute inset-0 w-full h-full object-cover" style="clip-path: inset(0 50% 0 0); filter: grayscale(50%) contrast(0.9);" alt="Antes">
+                        <div class="compare-slider" style="left: 50%"></div>
+                    </div>
+                    <div class="flex justify-between items-center px-2">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Retrato Editorial</h4>
+                            <p class="text-sm text-gray-500">Retoque Pro + Color Grading</p>
+                        </div>
+                        <span class="price-pop px-3 py-1 rounded-full text-sm font-bold">€6</span>
+                    </div>
+                </div>
+
+                <!-- Trabajo 2 -->
+                <div class="reveal-up" style="transition-delay: 0.1s;">
+                    <div class="compare-wrapper h-[400px] mb-4" id="work2">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" class="absolute inset-0 w-full h-full object-cover" alt="Después">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80&sat=-80" class="absolute inset-0 w-full h-full object-cover" style="clip-path: inset(0 50% 0 0); filter: grayscale(60%);" alt="Antes">
+                        <div class="compare-slider" style="left: 50%"></div>
+                    </div>
+                    <div class="flex justify-between items-center px-2">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Moda Urbana</h4>
+                            <p class="text-sm text-gray-500">Pack Básico + Filtros</p>
+                        </div>
+                        <span class="price-pop px-3 py-1 rounded-full text-sm font-bold">€3</span>
+                    </div>
+                </div>
+
+                <!-- Trabajo 3 -->
+                <div class="reveal-up">
+                    <div class="compare-wrapper h-[400px] mb-4" id="work3">
+                        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" class="absolute inset-0 w-full h-full object-cover" alt="Después">
+                        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80&con=0.8&bri=-10" class="absolute inset-0 w-full h-full object-cover" style="clip-path: inset(0 50% 0 0); filter: contrast(0.8) brightness(0.9);" alt="Antes">
+                        <div class="compare-slider" style="left: 50%"></div>
+                    </div>
+                    <div class="flex justify-between items-center px-2">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Lookbook Minimal</h4>
+                            <p class="text-sm text-gray-500">Edición Premium</p>
+                        </div>
+                        <span class="price-pop px-3 py-1 rounded-full text-sm font-bold">€10</span>
+                    </div>
+                </div>
+
+                <!-- Trabajo 4 -->
+                <div class="reveal-up" style="transition-delay: 0.1s;">
+                    <div class="compare-wrapper h-[400px] mb-4" id="work4">
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" class="absolute inset-0 w-full h-full object-cover" alt="Después">
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80&sat=-100" class="absolute inset-0 w-full h-full object-cover" style="clip-path: inset(0 50% 0 0); filter: grayscale(70%);" alt="Antes">
+                        <div class="compare-slider" style="left: 50%"></div>
+                    </div>
+                    <div class="flex justify-between items-center px-2">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Outdoor Lifestyle</h4>
+                            <p class="text-sm text-gray-500">Retoque Pro</p>
+                        </div>
+                        <span class="price-pop px-3 py-1 rounded-full text-sm font-bold">€6</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sobre mí - CON FOTO REAL -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-portrait animate-fade">
-                    <div class="portrait-frame">
-                        <!-- FOTO REAL DEL USUARIO - REEMPLAZAR URL -->
-                        <img src="/mnt/kimi/upload/image.png" 
-                             alt="Rodolfo Fernández - Fotógrafo Mexicano">
+    <!-- Proceso Simple -->
+    <section class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 reveal-up">
+                <h2 class="font-syne text-4xl font-bold text-gray-800 mb-4">¿Cómo funciona?</h2>
+                <p class="text-gray-600">Tres pasos simples para transformar tus fotos</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center reveal-up">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-3xl shadow-lg shadow-purple-200">
+                        1
                     </div>
-                    <div class="mexican-flag" title="Fotógrafo Mexicano">
-                        <svg viewBox="0 0 640 480">
-                            <path fill="#006847" d="M0 0h213.3v480H0z"/>
-                            <path fill="#fff" d="M213.3 0h213.4v480H213.3z"/>
-                            <path fill="#ce1126" d="M426.7 0H640v480H426.7z"/>
-                        </svg>
-                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-2">Sube tus fotos</h3>
+                    <p class="text-gray-600 text-sm">Envíame tus imágenes mediante WeTransfer, Drive o Dropbox. Formatos RAW o JPEG.</p>
                 </div>
-                <div class="about-content animate-fade">
-                    <p class="about-role">Fotógrafo Mexicano</p>
-                    <h2>Rodolfo <span>Fernández</span></h2>
-                    <p class="about-text">
-                        Soy un fotógrafo que encuentra inspiración en los lugares que guardan memoria — 
-                        desde basílicas centenarias y grandes monumentos europeos hasta parques tranquilos, 
-                        canales y árboles solitarios.
-                    </p>
-                    <p class="about-text">
-                        Mi trabajo está moldeado por los viajes, la curiosidad y el deseo de capturar 
-                        la atmósfera de un lugar más allá de su apariencia superficial. Ya sea frente 
-                        a la Basílica de San Pedro, paseando por Brujas, o en un rincón tranquilo de la naturaleza, 
-                        me atraen escenas que se sienten atemporales y terrenales.
-                    </p>
-                    <p class="about-text">
-                        La fotografía me permite coleccionar estos momentos de quietud, luz y textura, 
-                        y compartir el sentido de presencia que siento cuando estoy allí.
-                    </p>
-                    
-                    <div class="about-quote">
-                        "Busco escenas que se sienten atemporales, que invitan a pausar y sentir."
+
+                <div class="text-center reveal-up" style="transition-delay: 0.1s;">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-200">
+                        2
                     </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-2">Edición exprés</h3>
+                    <p class="text-gray-600 text-sm">Trabajo en tu proyecto con prioridad. Entrega garantizada en 24-48 horas.</p>
+                </div>
+
+                <div class="text-center reveal-up" style="transition-delay: 0.2s;">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-white text-3xl shadow-lg shadow-green-200">
+                        3
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-2">Recibe y paga</h3>
+                    <p class="text-gray-600 text-sm">Descarga tus fotos editadas en alta calidad. Pagas solo si estás 100% satisfecho.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contacto -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-icon">✦</div>
-            <h2>Iniciar conversación</h2>
-            <p>¿Interesado en una obra o tienes un proyecto en mente?</p>
-            
-            <form class="contact-form" onsubmit="handleSubmit(event)">
-                <div class="form-row">
-                    <input type="text" class="form-input" placeholder="Nombre" required>
-                    <input type="email" class="form-input" placeholder="Email" required>
+    <section id="contacto" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-90"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="glass-dark rounded-3xl p-8 md:p-12 text-white reveal-up">
+                <div class="text-center mb-10">
+                    <h2 class="font-syne text-4xl font-bold mb-4">¿Listo para empezar?</h2>
+                    <p class="text-white/80">Cuéntame sobre tu proyecto y te respondo en minutos</p>
                 </div>
-                <div class="form-row">
-                    <select class="form-input">
-                        <option value="">¿Qué necesitas?</option>
-                        <option value="compra">Comprar una fotografía</option>
-                        <option value="edicion">Servicio de edición</option>
-                        <option value="encargo">Encargo personalizado</option>
-                        <option value="licencia">Licencia comercial</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                    <input type="text" class="form-input" placeholder="País de interés (opcional)">
+
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-white/80">Nombre</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white focus:bg-white/20 transition-all" placeholder="Tu nombre">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-white/80">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white focus:bg-white/20 transition-all" placeholder="tu@email.com">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-white/80">Servicio</label>
+                            <select id="serviceSelect" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:border-white focus:bg-white/20 transition-all [&>option]:bg-purple-600">
+                                <option value="">Selecciona...</option>
+                                <option value="basico">Retoque Básico - €3/foto</option>
+                                <option value="pro">Retoque Pro - €6/foto</option>
+                                <option value="premium">Edición Premium - €10/foto</option>
+                                <option value="mixto">Mixto / No estoy seguro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-white/80">Cantidad aproximada</label>
+                            <input type="number" min="1" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white focus:bg-white/20 transition-all" placeholder="Ej: 20 fotos">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-white/80">Describe tu proyecto</label>
+                        <textarea rows="4" required class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white focus:bg-white/20 transition-all resize-none" placeholder="¿Qué tipo de fotos necesitas editar? ¿Tienes referencias de estilo?"></textarea>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button type="submit" class="bg-white text-purple-600 px-12 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all">
+                            Enviar Solicitud 🚀
+                        </button>
+                        <p class="mt-4 text-sm text-white/60">Respuesta garantizada en menos de 2 horas</p>
+                    </div>
+                </form>
+
+                <div class="mt-10 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/70">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        Disponible ahora
+                    </div>
+                    <a href="mailto:edit@rfernandez.photo" class="hover:text-white transition-colors">edit@rfernandez.photo</a>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                        <a href="#" class="hover:text-white transition-colors">Behance</a>
+                    </div>
                 </div>
-                <textarea class="form-input" placeholder="Cuéntame más sobre tu proyecto..." required></textarea>
-                <button type="submit">Enviar mensaje</button>
-            </form>
-            
-            <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; gap: 32px; font-size: 14px; color: rgba(255,255,255,0.5);">
-                <a href="mailto:rodolfo@fernandez.photo" style="color: inherit; text-decoration: none;">rodolfo@fernandez.photo</a>
-                <span>•</span>
-                <span>Ciudad de México</span>
-                <span>•</span>
-                <span>Envío mundial</span>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Rodolfo Fernández</h3>
-                    <p>Fotógrafo mexicano especializado en viajes y lugares que guardan memoria. Ediciones limitadas para coleccionistas.</p>
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold">
+                    RF
                 </div>
-                <div class="footer-column">
-                    <h4>Colecciones</h4>
-                    <ul>
-                        <li><a href="#" onclick="filterGallery('italia')">Italia</a></li>
-                        <li><a href="#" onclick="filterGallery('vaticano')">Vaticano</a></li>
-                        <li><a href="#" onclick="filterGallery('belgica')">Bélgica</a></li>
-                        <li><a href="#" onclick="filterGallery('naturaleza')">Naturaleza</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Servicios</h4>
-                    <ul>
-                        <li><a href="#gallery">Comprar fotos</a></li>
-                        <li><a href="#contact">Edición profesional</a></li>
-                        <li><a href="#contact">Licencias</a></li>
-                        <li><a href="#contact">Encargos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Conecta</h4>
-                    <ul>
-                        <li><a href="https://instagram.com/rfernandez.photo" target="_blank">Instagram</a></li>
-                        <li><a href="https://rodolfofer.picfair.com" target="_blank">Picfair</a></li>
-                        <li><a href="mailto:rodolfo@fernandez.photo">Email</a></li>
-                    </ul>
+                <div>
+                    <h4 class="font-bold">R. Fernández</h4>
+                    <p class="text-xs text-gray-400">Edición Profesional Accesible</p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2024 Rodolfo Fernández. Todos los derechos reservados.</p>
-                <div>
-                    <a href="#" style="margin-right: 16px;">Términos</a>
-                    <a href="#">Privacidad</a>
-                </div>
+            
+            <p class="text-gray-500 text-sm">© 2024 - Hecho con 💜 para creadores</p>
+            
+            <div class="flex gap-6 text-sm text-gray-400">
+                <a href="#" class="hover:text-white transition-colors">Términos</a>
+                <a href="#" class="hover:text-white transition-colors">Privacidad</a>
             </div>
         </div>
     </footer>
 
-    <!-- Modal de Compra -->
-    <div class="modal" id="buyModal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal(null)">×</button>
-            <div class="modal-grid">
-                <div class="modal-image">
-                    <img id="modalImg" src="" alt="">
-                </div>
-                <div class="modal-info">
-                    <p class="modal-country" id="modalCountry"></p>
-                    <h3 class="modal-title" id="modalTitle"></h3>
-                    <p class="modal-location" id="modalLocation"></p>
-                    
-                    <div class="option-group">
-                        <label class="option-label">Tamaño</label>
-                        <select class="option-select" id="sizeSelect" onchange="updatePrice()">
-                            <option value="small">30 × 40 cm — €85</option>
-                            <option value="medium" selected>50 × 70 cm — €150</option>
-                            <option value="large">70 × 100 cm — €250</option>
-                            <option value="xlarge">100 × 140 cm — €450</option>
-                        </select>
-                    </div>
-                    
-                    <div class="option-group">
-                        <label class="option-label">Acabado</label>
-                        <select class="option-select" id="finishSelect" onchange="updatePrice()">
-                            <option value="print">Impresión sola</option>
-                            <option value="mounted">Montada en aluminio +€45</option>
-                            <option value="framed_black">Marco negro +€85</option>
-                            <option value="framed_wood">Marco madera natural +€95</option>
-                        </select>
-                    </div>
-                    
-                    <div class="modal-total">
-                        <span class="total-label">Total estimado</span>
-                        <span class="total-price" id="modalPrice">€150</span>
-                    </div>
-                    
-                    <div class="modal-buttons">
-                        <button class="btn-primary" onclick="inquire()" style="width: 100%; margin-bottom: 12px;">Solicitar información</button>
-                        <button class="btn-dark" onclick="closeModal(null)">Seguir explorando</button>
-                    </div>
-                    
-                    <p class="modal-note">Envío internacional desde México. Entrega 10-15 días hábiles.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // DATOS DE FOTOS - REEMPLAZAR CON TUS URLS DE PICFAIR
-        const photos = [
-            // ITALIA
-            {
-                id: 1,
-                src: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80',
-                title: 'Coliseo al Amanecer',
-                location: 'Roma',
-                country: 'Italia',
-                category: 'italia',
-                price: 150
-            },
-            {
-                id: 2,
-                src: 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=800&q=80',
-                title: 'Venecia en Silencio',
-                location: 'Venecia',
-                country: 'Italia',
-                category: 'italia',
-                price: 150
-            },
-            {
-                id: 3,
-                src: 'https://images.unsplash.com/photo-1543429257-3eb0b8ee41b9?w=800&q=80',
-                title: 'Duomo de Florencia',
-                location: 'Florencia',
-                country: 'Italia',
-                category: 'italia',
-                price: 150
-            },
-            {
-                id: 4,
-                src: 'https://images.unsplash.com/photo-1529260830199-42c42dda5f3d?w=800&q=80',
-                title: 'Trastevere',
-                location: 'Roma',
-                country: 'Italia',
-                category: 'italia',
-                price: 120
-            },
-            
-            // VATICANO
-            {
-                id: 5,
-                src: 'https://images.unsplash.com/photo-1531572753322-ad0ce1f534da?w=800&q=80',
-                title: 'Basílica de San Pedro',
-                location: 'Ciudad del Vaticano',
-                country: 'Vaticano',
-                category: 'vaticano',
-                price: 180
-            },
-            {
-                id: 6,
-                src: 'https://images.unsplash.com/photo-1552423316-682f66423511?w=800&q=80',
-                title: 'Plaza San Pedro',
-                location: 'Vaticano',
-                country: 'Vaticano',
-                category: 'vaticano',
-                price: 180
-            },
-            
-            // BÉLGICA (Brujas mencionada en tu bio)
-            {
-                id: 7,
-                src: 'https://images.unsplash.com/photo-1516571137133-19b54990f4a4?w=800&q=80',
-                title: 'Canales de Brujas',
-                location: 'Brujas',
-                country: 'Bélgica',
-                category: 'belgica',
-                price: 150
-            },
-            {
-                id: 8,
-                src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-                title: 'Grand Place',
-                location: 'Bruselas',
-                country: 'Bélgica',
-                category: 'belgica',
-                price: 150
-            },
-            
-            // HOLANDA
-            {
-                id: 9,
-                src: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a2?w=800&q=80',
-                title: 'Canales de Ámsterdam',
-                location: 'Ámsterdam',
-                country: 'Holanda',
-                category: 'holanda',
-                price: 150
-            },
-            
-            // FRANCIA
-            {
-                id: 10,
-                src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80',
-                title: 'Torre Eiffel',
-                location: 'París',
-                country: 'Francia',
-                category: 'francia',
-                price: 150
-            },
-            
-            // ESPAÑA
-            {
-                id: 11,
-                src: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80',
-                title: 'Park Güell',
-                location: 'Barcelona',
-                country: 'España',
-                category: 'espana',
-                price: 150
-            },
-            
-            // AUSTRIA
-            {
-                id: 12,
-                src: 'https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=800&q=80',
-                title: 'Ópera de Viena',
-                location: 'Viena',
-                country: 'Austria',
-                category: 'austria',
-                price: 150
-            },
-            
-            // PORTUGAL
-            {
-                id: 13,
-                src: 'https://images.unsplash.com/photo-1555881400-74d7acaacd81?w=800&q=80',
-                title: 'Torre de Belém',
-                location: 'Lisboa',
-                country: 'Portugal',
-                category: 'portugal',
-                price: 150
-            },
-            
-            // SUIZA
-            {
-                id: 14,
-                src: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=800&q=80',
-                title: 'Alpes Suizos',
-                location: 'Interlaken',
-                country: 'Suiza',
-                category: 'suiza',
-                price: 150
-            },
-            
-            // UK
-            {
-                id: 15,
-                src: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80',
-                title: 'Big Ben',
-                location: 'Londres',
-                country: 'Reino Unido',
-                category: 'uk',
-                price: 150
-            },
-            
-            // ALEMANIA
-            {
-                id: 16,
-                src: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800&q=80',
-                title: 'Puerta de Brandeburgo',
-                location: 'Berlín',
-                country: 'Alemania',
-                category: 'alemania',
-                price: 150
-            },
-            
-            // GRECIA
-            {
-                id: 17,
-                src: 'https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=800&q=80',
-                title: 'Acrópolis',
-                location: 'Atenas',
-                country: 'Grecia',
-                category: 'grecia',
-                price: 150
-            },
-            
-            // TURQUÍA
-            {
-                id: 18,
-                src: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=80',
-                title: 'Santa Sofía',
-                location: 'Estambul',
-                country: 'Turquía',
-                category: 'turquia',
-                price: 150
-            },
-            
-            // NATURALEZA
-            {
-                id: 19,
-                src: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80',
-                title: 'Árbol Solitario',
-                location: 'Toscana',
-                country: 'Italia',
-                category: 'naturaleza',
-                price: 120
-            },
-            {
-                id: 20,
-                src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80',
-                title: 'Bosque de Hayas',
-                location: 'Baviera',
-                country: 'Alemania',
-                category: 'naturaleza',
-                price: 120
-            }
-        ];
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 800);
+        });
 
-        let currentPhoto = null;
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        function renderGallery(filter = 'all') {
-            const grid = document.getElementById('galleryGrid');
-            const filtered = filter === 'all' ? photos : photos.filter(p => p.category === filter);
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+        // Comparadores interactivos
+        function initComparador(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
             
-            grid.innerHTML = filtered.map((photo, index) => `
-                <div class="photo-card animate-fade" style="animation-delay: ${index * 0.05}s" onclick="openModal(${photo.id})">
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy">
-                    <div class="photo-overlay">
-                        <div class="photo-info">
-                            <p class="photo-country">${photo.country}</p>
-                            <h4 class="photo-title">${photo.title}</h4>
-                            <p class="photo-location">${photo.location}</p>
-                            <p class="photo-price">€${photo.price}</p>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            const slider = container.querySelector('.compare-slider');
+            const beforeImg = container.querySelectorAll('img')[1];
+            let isDragging = false;
+
+            const updateSlider = (x) => {
+                const rect = container.getBoundingClientRect();
+                let percentage = ((x - rect.left) / rect.width) * 100;
+                percentage = Math.max(5, Math.min(95, percentage));
+                slider.style.left = percentage + '%';
+                beforeImg.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            };
+
+            slider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                e.preventDefault();
+            });
+            
+            document.addEventListener('mouseup', () => isDragging = false);
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.clientX);
+            });
+
+            // Touch
+            slider.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                e.preventDefault();
+            });
+            document.addEventListener('touchend', () => isDragging = false);
+            document.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.touches[0].clientX);
+            });
+
+            container.addEventListener('click', (e) => {
+                if (e.target === slider || slider.contains(e.target)) return;
+                updateSlider(e.clientX);
+            });
         }
 
-        function filterGallery(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            renderGallery(category);
-            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
-        }
+        // Inicializar todos los comparadores
+        ['heroCompare', 'work1', 'work2', 'work3', 'work4'].forEach(id => initComparador(id));
 
-        function openModal(id) {
-            currentPhoto = photos.find(p => p.id === id);
-            document.getElementById('modalImg').src = currentPhoto.src;
-            document.getElementById('modalCountry').textContent = currentPhoto.country;
-            document.getElementById('modalTitle').textContent = currentPhoto.title;
-            document.getElementById('modalLocation').textContent = currentPhoto.location;
-            updatePrice();
-            document.getElementById('buyModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(event) {
-            if (!event || event.target.id === 'buyModal') {
-                document.getElementById('buyModal').classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-
-        function updatePrice() {
-            const sizes = { small: 85, medium: 150, large: 250, xlarge: 450 };
-            const finishes = { print: 0, mounted: 45, framed_black: 85, framed_wood: 95 };
+        // Selección de servicio
+        function selectService(service) {
+            document.getElementById('serviceSelect').value = service;
+            document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
             
-            const size = document.getElementById('sizeSelect').value;
-            const finish = document.getElementById('finishSelect').value;
-            
-            const total = sizes[size] + finishes[finish];
-            document.getElementById('modalPrice').textContent = `€${total}`;
+            // Feedback visual
+            const select = document.getElementById('serviceSelect');
+            select.style.transform = 'scale(1.05)';
+            select.style.boxShadow = '0 0 20px rgba(255,255,255,0.5)';
+            setTimeout(() => {
+                select.style.transform = '';
+                select.style.boxShadow = '';
+            }, 300);
         }
 
-        function inquire() {
-            const size = document.getElementById('sizeSelect').options[document.getElementById('sizeSelect').selectedIndex].text;
-            const finish = document.getElementById('finishSelect').options[document.getElementById('finishSelect').selectedIndex].text;
-            const price = document.getElementById('modalPrice').textContent;
-            
-            const subject = `Consulta: ${currentPhoto.title} (${currentPhoto.country})`;
-            const body = `Hola Rodolfo,
-
-Me interesa la fotografía:
-
-Título: ${currentPhoto.title}
-Ubicación: ${currentPhoto.location}, ${currentPhoto.country}
-Tamaño: ${size}
-Acabado: ${finish}
-Presupuesto: ${price}
-
-Por favor contáctame para finalizar la compra.
-
-Saludos,`;
-            
-            window.location.href = `mailto:rodolfo@fernandez.photo?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        }
-
-        function handleSubmit(e) {
+        // Formulario
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = e.target.querySelector('button');
-            const original = btn.textContent;
+            const originalText = btn.innerHTML;
             
-            btn.textContent = 'Enviando...';
+            btn.innerHTML = 'Enviando...';
             btn.disabled = true;
             
             setTimeout(() => {
-                btn.textContent = '✓ Mensaje enviado';
+                btn.innerHTML = '¡Solicitud Enviada! 🎉';
+                btn.classList.add('bg-green-500', 'text-white');
+                btn.classList.remove('bg-white', 'text-purple-600');
+                
                 setTimeout(() => {
                     e.target.reset();
-                    btn.textContent = original;
+                    btn.innerHTML = originalText;
                     btn.disabled = false;
-                }, 2000);
+                    btn.classList.remove('bg-green-500', 'text-white');
+                    btn.classList.add('bg-white', 'text-purple-600');
+                }, 3000);
             }, 1500);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderGallery();
         });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            // Implementación simple - podrías expandir esto
+            alert('Menú móvil - en dispositivos móviles desliza o usa los links directos');
+        }
     </script>
 </body>
 </html>
