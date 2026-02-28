@@ -3,210 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R. Fernández Photography | Portafolio</title>
+    <title>R. Fernández | Edición de Fotografía Profesional</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'malta-stone': '#E6DCC4',
+                        'malta-sand': '#D4C5B0',
+                        'malta-blue': '#1E4D5C',
+                        'malta-deep': '#0F2A33',
+                        'malta-gold': '#B8956B',
+                        'malta-gold-light': '#D4AF37',
+                        'parchment': '#F5F0E6',
+                    },
+                    fontFamily: {
+                        'cinzel': ['Cinzel', 'serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                        'lato': ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --cursor-size: 20px;
-        }
-        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #f5f5f5;
-            overflow-x: hidden;
+            font-family: 'Lato', sans-serif;
+            background-color: #F5F0E6;
+            color: #2C2419;
         }
         
-        .font-serif {
-            font-family: 'Cormorant Garamond', serif;
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        
+        /* Textura de piedra sutil */
+        .stone-texture {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
         }
         
-        /* Custom Cursor */
-        .cursor-dot,
-        .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        
-        .cursor-dot {
-            width: 5px;
-            height: 5px;
-            background-color: white;
-        }
-        
-        .cursor-outline {
-            width: 30px;
-            height: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        
-        .cursor-outline.hover {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: white;
-        }
-        
-        /* Grain Overlay */
-        .grain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-        
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Gallery Masonry */
-        .masonry-grid {
-            column-count: 1;
-            column-gap: 1.5rem;
-        }
-        
-        @media (min-width: 640px) {
-            .masonry-grid {
-                column-count: 2;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .masonry-grid {
-                column-count: 3;
-            }
-        }
-        
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .masonry-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .masonry-item img {
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s;
-        }
-        
-        .masonry-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* Text Reveal Animation */
-        .reveal-text {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease;
-        }
-        
-        .reveal-text.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Navigation */
-        .nav-link {
+        /* Cruz de Malta sutil */
+        .cross-malta {
             position: relative;
-            overflow: hidden;
+            display: inline-block;
         }
         
-        .nav-link::after {
+        .cross-malta::before {
+            content: '✠';
+            font-size: 0.6em;
+            opacity: 0.3;
+            margin-right: 0.5em;
+            color: #B8956B;
+        }
+        
+        /* Efecto pergamino */
+        .parchment-edge {
+            position: relative;
+        }
+        
+        .parchment-edge::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: white;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            transform: translateX(0);
-        }
-        
-        /* Contact Form */
-        .form-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #333;
-            transition: border-color 0.3s;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-bottom-color: white;
-        }
-        
-        /* Instagram Feed Simulation */
-        .insta-hover {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .insta-hover::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: 1;
-        }
-        
-        .insta-hover:hover::before {
-            opacity: 1;
-        }
-        
-        .insta-hover .overlay-content {
-            position: absolute;
-            bottom: 0;
+            bottom: -20px;
             left: 0;
             right: 0;
-            padding: 2rem;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease;
-            z-index: 2;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(245,240,230,1), transparent);
+            filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='wave'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.01' numOctaves='5' /%3E%3CfeDisplacementMap in='SourceGraphic' scale='20' /%3E%3C/filter%3E%3C/svg%3E#wave");
         }
         
-        .insta-hover:hover .overlay-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* Loading Animation */
+        /* Loader */
         .loader {
             position: fixed;
             inset: 0;
-            background: #0a0a0a;
+            background: #F5F0E6;
             z-index: 10000;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.6s, visibility 0.6s;
+            transition: opacity 0.8s ease, visibility 0.8s;
         }
         
         .loader.hidden {
@@ -214,567 +93,691 @@
             visibility: hidden;
         }
         
-        .loader-text {
-            font-size: 2rem;
-            letter-spacing: 0.5em;
+        .loader-cross {
+            font-size: 4rem;
+            color: #B8956B;
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
         }
         
-        /* Mobile Menu */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Comparador Before/After */
+        .comparison-container {
+            position: relative;
+            overflow: hidden;
+            cursor: ew-resize;
         }
         
-        .mobile-menu.open {
-            transform: translateX(0);
+        .comparison-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #B8956B;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        
+        .comparison-slider::before {
+            content: '◀ ▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #B8956B;
+            color: white;
+            padding: 8px 4px;
+            border-radius: 20px;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .before-image, .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .after-image {
+            clip-path: inset(0 50% 0 0);
+        }
+        
+        /* Cards de servicios */
+        .service-card {
+            background: white;
+            border: 1px solid #E6DCC4;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #B8956B, transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(30, 77, 92, 0.1);
+        }
+        
+        /* Botón estilo sello */
+        .btn-seal {
+            position: relative;
+            background: #1E4D5C;
+            color: #F5F0E6;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-seal::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border: 1px solid rgba(184, 149, 107, 0.3);
+            pointer-events: none;
+        }
+        
+        .btn-seal:hover {
+            background: #0F2A33;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(30, 77, 92, 0.3);
+        }
+        
+        /* Precios */
+        .price-tag {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .price-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #B8956B;
+            opacity: 0.5;
+        }
+        
+        /* Navegación */
+        .nav-link {
+            position: relative;
+            color: #2C2419;
+            transition: color 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #B8956B;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #1E4D5C;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Formulario elegante */
+        .elegant-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #D4C5B0;
+            transition: all 0.3s;
+        }
+        
+        .elegant-input:focus {
+            outline: none;
+            border-bottom-color: #1E4D5C;
+            background: rgba(30, 77, 92, 0.02);
+        }
+        
+        /* Badge de la Orden */
+        .order-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(184, 149, 107, 0.1);
+            border: 1px solid rgba(184, 149, 107, 0.3);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #1E4D5C;
+        }
+        
+        .order-badge::before {
+            content: '✠';
+            color: #B8956B;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-white selection:text-black">
+<body class="stone-texture">
 
-    <!-- Grain Overlay -->
-    <div class="grain"></div>
-    
-    <!-- Custom Cursor (Desktop only) -->
-    <div class="cursor-dot hidden md:block"></div>
-    <div class="cursor-outline hidden md:block"></div>
-    
     <!-- Loader -->
     <div class="loader" id="loader">
-        <div class="loader-text font-serif italic">RF</div>
+        <div class="loader-cross font-cinzel">✠</div>
+        <p class="mt-4 font-cinzel text-sm tracking-[0.3em] text-malta-blue">R. FERNÁNDEZ</p>
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 mix-blend-difference">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif italic tracking-wider hover:opacity-70 transition-opacity">R. Fernández</a>
-            
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 text-sm tracking-widest uppercase">
-                <a href="#work" class="nav-link">Trabajos</a>
-                <a href="#about" class="nav-link">Sobre Mí</a>
-                <a href="#contact" class="nav-link">Contacto</a>
-                <a href="https://instagram.com/rfernandez.photo" target="_blank" class="nav-link">Instagram</a>
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-parchment/90 backdrop-blur-md border-b border-malta-sand/30">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl text-malta-gold font-cinzel">✠</span>
+                <div>
+                    <h1 class="font-cinzel text-lg tracking-wider text-malta-deep">R. FERNÁNDEZ</h1>
+                    <p class="text-[10px] tracking-[0.2em] text-malta-blue uppercase">Edición Profesional</p>
+                </div>
             </div>
             
-            <!-- Mobile Menu Button -->
-            <button id="menuBtn" class="md:hidden space-y-1.5 focus:outline-none">
-                <span class="block w-6 h-0.5 bg-white transition-transform"></span>
-                <span class="block w-6 h-0.5 bg-white transition-opacity"></span>
-                <span class="block w-6 h-0.5 bg-white transition-transform"></span>
+            <div class="hidden md:flex items-center gap-8 text-sm tracking-wide">
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#trabajos" class="nav-link">Portafolio</a>
+                <a href="#proceso" class="nav-link">Proceso</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+            </div>
+            
+            <a href="#contacto" class="btn-seal px-6 py-3 text-xs tracking-widest uppercase font-semibold hidden md:block">
+                Solicitar Edición
+            </a>
+            
+            <button id="menuBtn" class="md:hidden text-malta-deep">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
             </button>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-black z-40 flex flex-col justify-center items-center space-y-8 md:hidden">
-        <a href="#work" class="text-3xl font-serif italic mobile-link">Trabajos</a>
-        <a href="#about" class="text-3xl font-serif italic mobile-link">Sobre Mí</a>
-        <a href="#contact" class="text-3xl font-serif italic mobile-link">Contacto</a>
-        <a href="https://instagram.com/rfernandez.photo" target="_blank" class="text-3xl font-serif italic mobile-link">Instagram</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative px-6">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0a]"></div>
-            <!-- Abstract Background -->
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-neutral-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neutral-700 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+    <!-- Hero -->
+    <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-malta-blue rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-malta-gold rounded-full filter blur-3xl"></div>
         </div>
         
-        <div class="relative z-10 text-center max-w-4xl mx-auto">
-            <p class="reveal-text text-sm tracking-[0.3em] uppercase mb-6 text-neutral-400">Fotografía & Dirección de Arte</p>
-            <h1 class="reveal-text font-serif text-5xl md:text-7xl lg:text-8xl italic leading-tight mb-8" style="transition-delay: 0.1s;">
-                Capturando momentos<br>
-                <span class="text-neutral-500">eternos</span>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="reveal">
+                <span class="order-badge mb-6 inline-block">Estudio de Edición Digital</span>
+            </div>
+            
+            <h1 class="reveal font-playfair text-5xl md:text-7xl lg:text-8xl text-malta-deep leading-tight mb-6" style="transition-delay: 0.1s;">
+                La perfección<br>
+                <span class="italic text-malta-blue">en cada píxel</span>
             </h1>
-            <p class="reveal-text text-neutral-400 max-w-lg mx-auto text-lg font-light leading-relaxed" style="transition-delay: 0.2s;">
-                Especializado en retratos, moda y fotografía editorial. 
-                Transformando visión en imagen desde 2018.
+            
+            <p class="reveal text-lg md:text-xl text-malta-blue/80 max-w-2xl mx-auto mb-12 font-light leading-relaxed" style="transition-delay: 0.2s;">
+                Servicios profesionales de edición fotográfica para fotógrafos, agencias y marcas. 
+                Transformo tus capturas en obras maestras digitales con la precisión de un artesano.
             </p>
-            <div class="reveal-text mt-12" style="transition-delay: 0.3s;">
-                <a href="#work" class="inline-block border border-white/30 px-8 py-3 text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300">
-                    Ver Portafolio
+            
+            <div class="reveal flex flex-col sm:flex-row gap-4 justify-center items-center" style="transition-delay: 0.3s;">
+                <a href="#trabajos" class="btn-seal px-8 py-4 text-sm tracking-widest uppercase">
+                    Ver Transformaciones
+                </a>
+                <a href="#servicios" class="text-malta-blue border-b border-malta-gold pb-1 hover:text-malta-gold transition-colors text-sm tracking-wide">
+                    Explorar Servicios →
+                </a>
+            </div>
+            
+            <div class="reveal mt-20 pt-10 border-t border-malta-sand/30" style="transition-delay: 0.4s;">
+                <p class="text-xs tracking-[0.3em] text-malta-blue/60 uppercase mb-4">Especialidades</p>
+                <div class="flex flex-wrap justify-center gap-8 text-sm text-malta-deep/80">
+                    <span class="flex items-center gap-2"><span class="text-malta-gold">✦</span> Retoque de Retratos</span>
+                    <span class="flex items-center gap-2"><span class="text-malta-gold">✦</span> Edición de Moda</span>
+                    <span class="flex items-center gap-2"><span class="text-malta-gold">✦</span> Color Grading</span>
+                    <span class="flex items-center gap-2"><span class="text-malta-gold">✦</span> Composición Avanzada</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="py-24 px-6 bg-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="order-badge mb-4 inline-block">Servicios</span>
+                <h2 class="font-playfair text-4xl md:text-5xl text-malta-deep mb-4">Maestría en Edición</h2>
+                <p class="text-malta-blue/70 max-w-xl mx-auto">Cada proyecto recibe atención meticulosa y técnicas avanzadas de post-producción</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="service-card p-8 reveal">
+                    <div class="w-12 h-12 bg-malta-stone/30 rounded-full flex items-center justify-center mb-6 text-malta-blue text-xl">
+                        ✦
+                    </div>
+                    <h3 class="font-cinzel text-xl text-malta-deep mb-3 tracking-wide">Retoque Premium</h3>
+                    <p class="text-malta-blue/70 text-sm leading-relaxed mb-6">
+                        Corrección de piel profesional sin perder textura, ajuste de forma, 
+                        eliminación de imperfecciones y retoque de alta frecuencia.
+                    </p>
+                    <ul class="space-y-2 text-sm text-malta-deep/80 mb-6">
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> Dodge & Burn avanzado</li>
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> Frecuencia separada</li>
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> Corrección tonal</li>
+                    </ul>
+                    <p class="font-cinzel text-2xl text-malta-gold price-tag">€45<span class="text-sm text-malta-blue/60">/foto</span></p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="service-card p-8 reveal" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 bg-malta-stone/30 rounded-full flex items-center justify-center mb-6 text-malta-blue text-xl">
+                        ✦
+                    </div>
+                    <h3 class="font-cinzel text-xl text-malta-deep mb-3 tracking-wide">Color Grading</h3>
+                    <p class="text-malta-blue/70 text-sm leading-relaxed mb-6">
+                        Creación de lookbooks consistentes, matching de color entre sesiones 
+                        y desarrollo de estilos visuales únicos para tu marca.
+                    </p>
+                    <ul class="space-y-2 text-sm text-malta-deep/80 mb-6">
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> LUTs personalizados</li>
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> Matching de sesiones</li>
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> Consistencia de marca</li>
+                    </ul>
+                    <p class="font-cinzel text-2xl text-malta-gold price-tag">€35<span class="text-sm text-malta-blue/60">/foto</span></p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="service-card p-8 reveal" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 bg-malta-stone/30 rounded-full flex items-center justify-center mb-6 text-malta-blue text-xl">
+                        ✦
+                    </div>
+                    <h3 class="font-cinzel text-xl text-malta-deep mb-3 tracking-wide">Composición</h3>
+                    <p class="text-malta-blue/70 text-sm leading-relaxed mb-6">
+                        Manipulación avanzada: cambio de fondos, integración de elementos, 
+                        extensiones de fondo y correcciones complejas de composición.
+                    </p>
+                    <ul class="space-y-2 text-sm text-malta-deep/80 mb-6">
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> Matte painting</li>
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> Photo compositing</li>
+                        <li class="flex items-center gap-2"><span class="text-malta-gold text-xs">✓</span> Extensiones seamless</li>
+                    </ul>
+                    <p class="font-cinzel text-2xl text-malta-gold price-tag">€75<span class="text-sm text-malta-blue/60">/foto</span></p>
+                </div>
+            </div>
+
+            <!-- Pack Completo -->
+            <div class="mt-12 bg-malta-deep text-parchment p-8 md:p-12 reveal relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-malta-gold/10 rounded-full filter blur-3xl"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div>
+                        <span class="text-malta-gold text-xs tracking-[0.3em] uppercase mb-2 block">Pack Profesional</span>
+                        <h3 class="font-playfair text-3xl mb-2">Servicio Completo de Edición</h3>
+                        <p class="text-parchment/70 max-w-lg">Incluye retoque premium + color grading + entrega en 48h. Ideal para sesiones editoriales completas.</p>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="font-cinzel text-4xl text-malta-gold mb-2">€120<span class="text-lg text-parchment/60">/foto</span></p>
+                        <p class="text-xs text-parchment/50 tracking-wider uppercase">Descuento por volumen disponible</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portafolio Before/After -->
+    <section id="trabajos" class="py-24 px-6 bg-parchment">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="order-badge mb-4 inline-block">Portafolio</span>
+                <h2 class="font-playfair text-4xl md:text-5xl text-malta-deep mb-4">Antes & Después</h2>
+                <p class="text-malta-blue/70">Arrastra el slider para ver la transformación</p>
+            </div>
+
+            <!-- Comparador 1 -->
+            <div class="reveal mb-12 bg-white p-4 shadow-xl">
+                <div class="comparison-container h-[500px] relative" id="compare1">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80" alt="Después - Retoque profesional" class="after-image">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80&sat=-100&con=1.1" alt="Antes - Original" class="before-image" style="filter: grayscale(30%) contrast(0.9)">
+                    <div class="comparison-slider" style="left: 50%"></div>
+                    <span class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 text-xs tracking-wider uppercase">Original</span>
+                    <span class="absolute top-4 right-4 bg-malta-gold/90 text-white px-3 py-1 text-xs tracking-wider uppercase">Editado</span>
+                </div>
+                <div class="mt-4 flex justify-between items-center px-2">
+                    <div>
+                        <h4 class="font-cinzel text-lg text-malta-deep">Retrato Editorial</h4>
+                        <p class="text-sm text-malta-blue/60">Retoque de piel • Color grading • Corrección de iluminación</p>
+                    </div>
+                    <span class="text-malta-gold font-cinzel">01</span>
+                </div>
+            </div>
+
+            <!-- Grid de trabajos adicionales -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="reveal bg-white p-3 shadow-lg" style="transition-delay: 0.1s;">
+                    <div class="relative aspect-[4/5] overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80" alt="Edición de moda" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-malta-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <p class="text-malta-gold text-xs tracking-wider uppercase mb-1">Moda</p>
+                                <h4 class="text-white font-cinzel text-lg">Color Grading Cálido</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal bg-white p-3 shadow-lg" style="transition-delay: 0.2s;">
+                    <div class="relative aspect-[4/5] overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" alt="Composición" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-malta-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <p class="text-malta-gold text-xs tracking-wider uppercase mb-1">Composición</p>
+                                <h4 class="text-white font-cinzel text-lg">Cambio de Fondo</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center reveal">
+                <a href="#contacto" class="inline-flex items-center gap-2 text-malta-blue border-b-2 border-malta-gold pb-1 hover:text-malta-gold transition-colors">
+                    <span class="tracking-wider">Ver más trabajos disponibles bajo petición</span>
+                    <span>→</span>
                 </a>
             </div>
         </div>
+    </section>
+
+    <!-- Proceso -->
+    <section id="proceso" class="py-24 px-6 bg-white relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="order-badge mb-4 inline-block">Metodología</span>
+                <h2 class="font-playfair text-4xl md:text-5xl text-malta-deep mb-4">Proceso de Trabajo</h2>
+                <p class="text-malta-blue/70">Un flujo refinado garantiza resultados excepcionales</p>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Paso 1 -->
+                <div class="flex flex-col md:flex-row gap-8 items-start reveal">
+                    <div class="md:w-1/4 flex md:flex-col items-center md:items-start gap-4">
+                        <span class="font-cinzel text-4xl text-malta-gold/30">01</span>
+                        <div class="h-full w-px md:w-full md:h-px bg-malta-sand/50 flex-1 hidden md:block"></div>
+                    </div>
+                    <div class="md:w-3/4 pb-8 border-b border-malta-sand/30">
+                        <h3 class="font-cinzel text-xl text-malta-deep mb-2">Consulta Inicial</h3>
+                        <p class="text-malta-blue/70 leading-relaxed">
+                            Analizamos tus necesidades específicas, referencias visuales y el uso final de las imágenes. 
+                            Establecemos el alcance y tiempos de entrega.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="flex flex-col md:flex-row gap-8 items-start reveal" style="transition-delay: 0.1s;">
+                    <div class="md:w-1/4 flex md:flex-col items-center md:items-start gap-4">
+                        <span class="font-cinzel text-4xl text-malta-gold/30">02</span>
+                    </div>
+                    <div class="md:w-3/4 pb-8 border-b border-malta-sand/30">
+                        <h3 class="font-cinzel text-xl text-malta-deep mb-2">Entrega de Archivos</h3>
+                        <p class="text-malta-blue/70 leading-relaxed">
+                            Recibo tus RAWs o JPEGs mediante plataforma segura. Verifico la calidad técnica 
+                            y confirmo la viabilidad de los ajustes solicitados.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="flex flex-col md:flex-row gap-8 items-start reveal" style="transition-delay: 0.2s;">
+                    <div class="md:w-1/4 flex md:flex-col items-center md:items-start gap-4">
+                        <span class="font-cinzel text-4xl text-malta-gold/30">03</span>
+                    </div>
+                    <div class="md:w-3/4 pb-8 border-b border-malta-sand/30">
+                        <h3 class="font-cinzel text-xl text-malta-deep mb-2">Edición Profesional</h3>
+                        <p class="text-malta-blue/70 leading-relaxed">
+                            Aplico técnicas avanzadas en Capture One y Photoshop. Cada imagen recibe 
+                            atención individual según los estándares acordados.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="flex flex-col md:flex-row gap-8 items-start reveal" style="transition-delay: 0.3s;">
+                    <div class="md:w-1/4 flex md:flex-col items-center md:items-start gap-4">
+                        <span class="font-cinzel text-4xl text-malta-gold/30">04</span>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="font-cinzel text-xl text-malta-deep mb-2">Revisión y Entrega</h3>
+                        <p class="text-malta-blue/70 leading-relaxed">
+                            Presento avances para feedback. Una vez aprobado, entrego archivos finales 
+                            en alta resolución con las especificaciones técnicas requeridas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-24 px-6 bg-malta-deep text-parchment relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-full h-full" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23B8956B\' fill-opacity=\'0.2\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
         
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg class="w-6 h-6 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="work" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="mb-16 reveal-text">
-            <h2 class="font-serif text-4xl md:text-5xl italic mb-4">Trabajos Seleccionados</h2>
-            <p class="text-neutral-500 text-sm tracking-widest uppercase">Portfolio 2023-2024</p>
-        </div>
-
-        <div class="masonry-grid" id="gallery">
-            <!-- Photo 1 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://www.instagram.com/p/DTizOJDDveN/" 
-                     alt="Retrato editorial" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Retrato</p>
-                    <h3 class="font-serif text-xl italic">Luz Natural</h3>
-                </div>
-            </div>
-
-            <!-- Photo 2 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" 
-                     alt="Moda urbana" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Moda</p>
-                    <h3 class="font-serif text-xl italic">Street Style</h3>
-                </div>
-            </div>
-
-            <!-- Photo 3 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80" 
-                     alt="Sesión editorial" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Editorial</p>
-                    <h3 class="font-serif text-xl italic">Golden Hour</h3>
-                </div>
-            </div>
-
-            <!-- Photo 4 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80" 
-                     alt="Retrato artístico" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Retrato</p>
-                    <h3 class="font-serif text-xl italic">Esencia</h3>
-                </div>
-            </div>
-
-            <!-- Photo 5 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" 
-                     alt="Moda minimalista" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Moda</p>
-                    <h3 class="font-serif text-xl italic">Minimal</h3>
-                </div>
-            </div>
-
-            <!-- Photo 6 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=800&q=80" 
-                     alt="Boudoir artístico" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Artístico</p>
-                    <h3 class="font-serif text-xl italic">Intimidad</h3>
-                </div>
-            </div>
-
-            <!-- Photo 7 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" 
-                     alt="Moda exterior" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Moda</p>
-                    <h3 class="font-serif text-xl italic">Wild</h3>
-                </div>
-            </div>
-
-            <!-- Photo 8 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80" 
-                     alt="Retrato creativo" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Retrato</p>
-                    <h3 class="font-serif text-xl italic">Miradas</h3>
-                </div>
-            </div>
-
-            <!-- Photo 9 -->
-            <div class="masonry-item insta-hover cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80" 
-                     alt="Editorial moda" 
-                     class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <div class="overlay-content">
-                    <p class="text-xs tracking-widest uppercase text-neutral-400 mb-1">Editorial</p>
-                    <h3 class="font-serif text-xl italic">Vanguardia</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-16 text-center reveal-text">
-            <a href="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80" 
-               class="inline-flex items-center space-x-2 text-sm tracking-widest uppercase hover:text-neutral-400 transition-colors">
-                <span>Ver más en Instagram</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
-            </a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 px-6 bg-neutral-900/30">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div class="reveal-text">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1554048612-387768052bf7?w=800&q=80" 
-                         alt="Fotógrafo trabajando" 
-                         class="w-full h-[600px] object-cover grayscale">
-                    <div class="absolute -bottom-6 -right-6 w-48 h-48 border border-white/20 hidden md:block"></div>
-                    <div class="absolute -top-6 -left-6 w-48 h-48 border border-white/20 hidden md:block"></div>
-                </div>
-            </div>
-            
-            <div class="reveal-text" style="transition-delay: 0.2s;">
-                <p class="text-sm tracking-widest uppercase text-neutral-500 mb-4">Sobre Mí</p>
-                <h2 class="font-serif text-4xl md:text-5xl italic mb-8 leading-tight">
-                    La fotografía como<br>lenguaje universal
-                </h2>
-                <div class="space-y-6 text-neutral-300 font-light leading-relaxed">
-                    <p>
-                        Soy R. Fernández, fotógrafo especializado en retratos y moda con sede en [Tu Ciudad]. 
-                        Mi trabajo se centra en capturar la esencia auténtica de cada sujeto, 
-                        creando imágenes que trascienden lo temporal.
-                    </p>
-                    <p>
-                        Con más de 6 años de experiencia, he colaborado con marcas como Vogue, 
-                        Elle y numerosas agencias de modelos internacionales. Mi enfoque combina 
-                        la técnica clásica con una visión contemporánea y atrevida.
-                    </p>
-                    <p>
-                        Cada sesión es una colaboración única, donde busco crear un ambiente 
-                        de confianza para que la personalidad de cada modelo brille naturalmente.
-                    </p>
-                </div>
-                
-                <div class="mt-10 grid grid-cols-3 gap-8 border-t border-white/10 pt-8">
-                    <div>
-                        <p class="font-serif text-3xl italic mb-1">6+</p>
-                        <p class="text-xs tracking-widest uppercase text-neutral-500">Años Exp.</p>
-                    </div>
-                    <div>
-                        <p class="font-serif text-3xl italic mb-1">200+</p>
-                        <p class="text-xs tracking-widest uppercase text-neutral-500">Sesiones</p>
-                    </div>
-                    <div>
-                        <p class="font-serif text-3xl italic mb-1">50+</p>
-                        <p class="text-xs tracking-widest uppercase text-neutral-500">Marcas</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="reveal-text group p-8 border border-white/10 hover:border-white/30 transition-colors">
-                <div class="mb-6 text-neutral-500 group-hover:text-white transition-colors">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="font-serif text-2xl italic mb-3">Retratos</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">
-                    Sesiones individuales enfocadas en capturar tu esencia única. 
-                    Ideal para modelos, actores y profesionales.
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-12 reveal">
+                <span class="inline-block mb-4 text-malta-gold text-3xl">✠</span>
+                <h2 class="font-playfair text-4xl md:text-5xl mb-4">Iniciar Proyecto</h2>
+                <p class="text-parchment/70 max-w-lg mx-auto">
+                    Cuéntame sobre tu proyecto. Responderé en menos de 24 horas con un presupuesto detallado.
                 </p>
             </div>
 
-            <div class="reveal-text group p-8 border border-white/10 hover:border-white/30 transition-colors" style="transition-delay: 0.1s;">
-                <div class="mb-6 text-neutral-500 group-hover:text-white transition-colors">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                    </svg>
+            <form class="space-y-8 reveal" id="contactForm">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                        <label class="text-xs tracking-[0.2em] uppercase text-malta-gold">Nombre</label>
+                        <input type="text" required class="w-full bg-transparent border-b border-parchment/30 py-3 text-parchment placeholder-parchment/40 focus:outline-none focus:border-malta-gold transition-colors" placeholder="Tu nombre completo">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs tracking-[0.2em] uppercase text-malta-gold">Email</label>
+                        <input type="email" required class="w-full bg-transparent border-b border-parchment/30 py-3 text-parchment placeholder-parchment/40 focus:outline-none focus:border-malta-gold transition-colors" placeholder="tu@email.com">
+                    </div>
                 </div>
-                <h3 class="font-serif text-2xl italic mb-3">Moda</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">
-                    Editorial y comercial para marcas, diseñadores y agencias. 
-                    Creatividad sin límites para tu colección.
-                </p>
-            </div>
 
-            <div class="reveal-text group p-8 border border-white/10 hover:border-white/30 transition-colors" style="transition-delay: 0.2s;">
-                <div class="mb-6 text-neutral-500 group-hover:text-white transition-colors">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                    </svg>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                        <label class="text-xs tracking-[0.2em] uppercase text-malta-gold">Tipo de Servicio</label>
+                        <select class="w-full bg-transparent border-b border-parchment/30 py-3 text-parchment focus:outline-none focus:border-malta-gold transition-colors [&>option]:bg-malta-deep">
+                            <option value="" class="bg-malta-deep">Selecciona un servicio</option>
+                            <option value="retoque" class="bg-malta-deep">Retoque Premium</option>
+                            <option value="color" class="bg-malta-deep">Color Grading</option>
+                            <option value="composicion" class="bg-malta-deep">Composición Avanzada</option>
+                            <option value="pack" class="bg-malta-deep">Pack Completo</option>
+                            <option value="otro" class="bg-malta-deep">Proyecto Personalizado</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs tracking-[0.2em] uppercase text-malta-gold">Cantidad de Fotos</label>
+                        <input type="number" min="1" class="w-full bg-transparent border-b border-parchment/30 py-3 text-parchment placeholder-parchment/40 focus:outline-none focus:border-malta-gold transition-colors" placeholder="Ej: 15">
+                    </div>
                 </div>
-                <h3 class="font-serif text-2xl italic mb-3">Eventos</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">
-                    Cobertura de desfiles, backstage y eventos exclusivos 
-                    con un ojo experto para los detalles.
-                </p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 px-6 max-w-4xl mx-auto">
-        <div class="text-center mb-16 reveal-text">
-            <p class="text-sm tracking-widest uppercase text-neutral-500 mb-4">Contacto</p>
-            <h2 class="font-serif text-4xl md:text-6xl italic mb-6">Trabajemos juntos</h2>
-            <p class="text-neutral-400 max-w-lg mx-auto">
-                ¿Tienes un proyecto en mente? Estoy disponible para colaboraciones 
-                editoriales, comerciales y sesiones personales.
-            </p>
-        </div>
-
-        <form class="space-y-8 reveal-text" id="contactForm">
-            <div class="grid md:grid-cols-2 gap-8">
                 <div class="space-y-2">
-                    <label class="text-xs tracking-widest uppercase text-neutral-500">Nombre</label>
-                    <input type="text" required 
-                           class="form-input w-full py-3 text-white placeholder-neutral-600" 
-                           placeholder="Tu nombre">
+                    <label class="text-xs tracking-[0.2em] uppercase text-malta-gold">Descripción del Proyecto</label>
+                    <textarea rows="4" required class="w-full bg-transparent border-b border-parchment/30 py-3 text-parchment placeholder-parchment/40 focus:outline-none focus:border-malta-gold transition-colors resize-none" placeholder="Describe el estilo deseado, referencias visuales, uso final de las imágenes..."></textarea>
                 </div>
-                <div class="space-y-2">
-                    <label class="text-xs tracking-widest uppercase text-neutral-500">Email</label>
-                    <input type="email" required 
-                           class="form-input w-full py-3 text-white placeholder-neutral-600" 
-                           placeholder="tu@email.com">
+
+                <div class="text-center pt-6">
+                    <button type="submit" class="bg-malta-gold text-malta-deep px-12 py-4 text-sm tracking-[0.2em] uppercase font-bold hover:bg-malta-gold-light transition-all duration-300 hover:shadow-lg hover:shadow-malta-gold/20">
+                        Enviar Solicitud
+                    </button>
                 </div>
-            </div>
-            
-            <div class="space-y-2">
-                <label class="text-xs tracking-widest uppercase text-neutral-500">Tipo de Proyecto</label>
-                <select class="form-input w-full py-3 text-white bg-transparent border-b border-neutral-800 focus:border-white">
-                    <option value="" class="bg-black">Selecciona una opción</option>
-                    <option value="retrato" class="bg-black">Retrato Personal</option>
-                    <option value="moda" class="bg-black">Editorial de Moda</option>
-                    <option value="comercial" class="bg-black">Proyecto Comercial</option>
-                    <option value="evento" class="bg-black">Cobertura de Evento</option>
-                    <option value="otro" class="bg-black">Otro</option>
-                </select>
-            </div>
+            </form>
 
-            <div class="space-y-2">
-                <label class="text-xs tracking-widest uppercase text-neutral-500">Mensaje</label>
-                <textarea rows="4" required 
-                          class="form-input w-full py-3 text-white placeholder-neutral-600 resize-none" 
-                          placeholder="Cuéntame sobre tu proyecto..."></textarea>
-            </div>
-
-            <div class="text-center pt-4">
-                <button type="submit" 
-                        class="group relative inline-flex items-center justify-center px-12 py-4 overflow-hidden font-medium transition-all bg-white rounded-none hover:bg-neutral-200 text-black">
-                    <span class="relative text-sm tracking-widest uppercase">Enviar Mensaje</span>
-                </button>
-            </div>
-        </form>
-
-        <div class="mt-20 pt-10 border-t border-white/10 grid md:grid-cols-3 gap-8 text-center reveal-text">
-            <div>
-                <p class="text-xs tracking-widest uppercase text-neutral-500 mb-2">Email</p>
-                <a href="mailto:hello@rfernandez.photo" class="hover:text-neutral-400 transition-colors">hello@rfernandez.photo</a>
-            </div>
-            <div>
-                <p class="text-xs tracking-widest uppercase text-neutral-500 mb-2">Teléfono</p>
-                <a href="tel:+1234567890" class="hover:text-neutral-400 transition-colors">+1 (234) 567-890</a>
-            </div>
-            <div>
-                <p class="text-xs tracking-widest uppercase text-neutral-500 mb-2">Ubicación</p>
-                <span class="text-neutral-300">Madrid, España</span>
+            <div class="mt-16 pt-10 border-t border-parchment/20 grid md:grid-cols-3 gap-8 text-center text-sm reveal">
+                <div>
+                    <p class="text-malta-gold text-xs tracking-wider uppercase mb-2">Email</p>
+                    <a href="mailto:edit@rfernandez.photo" class="text-parchment/80 hover:text-malta-gold transition-colors">edit@rfernandez.photo</a>
+                </div>
+                <div>
+                    <p class="text-malta-gold text-xs tracking-wider uppercase mb-2">Tiempo de Respuesta</p>
+                    <p class="text-parchment/80">&lt; 24 horas</p>
+                </div>
+                <div>
+                    <p class="text-malta-gold text-xs tracking-wider uppercase mb-2">Ubicación</p>
+                    <p class="text-parchment/80">Trabajo Remoto Worldwide</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-white/10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p class="font-serif italic text-xl">R. Fernández</p>
-            <div class="flex space-x-6 text-neutral-500">
-                <a href="https://instagram.com/rfernandez.photo" target="_blank" class="hover:text-white transition-colors">
-                    Instagram
-                </a>
-                <a href="#" class="hover:text-white transition-colors">Behance</a>
-                <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+    <footer class="bg-parchment border-t border-malta-sand/30 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl text-malta-gold font-cinzel">✠</span>
+                <div>
+                    <h4 class="font-cinzel text-lg text-malta-deep">R. FERNÁNDEZ</h4>
+                    <p class="text-[10px] tracking-[0.2em] text-malta-blue uppercase">Edición Profesional</p>
+                </div>
             </div>
-            <p class="text-xs text-neutral-600">© 2024 Todos los derechos reservados</p>
+            
+            <div class="flex gap-8 text-sm text-malta-blue/70">
+                <a href="https://instagram.com/rfernandez.photo" target="_blank" class="hover:text-malta-gold transition-colors">Instagram</a>
+                <a href="#" class="hover:text-malta-gold transition-colors">Behance</a>
+                <a href="#" class="hover:text-malta-gold transition-colors">LinkedIn</a>
+            </div>
+            
+            <p class="text-xs text-malta-blue/50 tracking-wider">© 2024 R. Fernández. Todos los derechos reservados.</p>
         </div>
     </footer>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden flex items-center justify-center p-4">
-        <button id="closeLightbox" class="absolute top-6 right-6 text-white hover:text-neutral-400 transition-colors">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
-        <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[90vh] object-contain">
-    </div>
 
     <script>
         // Loader
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
-            }, 1500);
+            }, 1200);
         });
 
-        // Custom Cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-        
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-
-        // Hover effect for cursor
-        const interactiveElements = document.querySelectorAll('a, button, .masonry-item');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
-        });
-
-        // Mobile Menu
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        let isMenuOpen = false;
-
-        menuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            mobileMenu.classList.toggle('open');
-            
-            // Animate hamburger
-            const spans = menuBtn.querySelectorAll('span');
-            if (isMenuOpen) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                isMenuOpen = false;
-                mobileMenu.classList.remove('open');
-                const spans = menuBtn.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            });
-        });
-
-        // Scroll Reveal Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        document.querySelectorAll('.reveal-text, .masonry-item').forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Comparador Before/After
+        const container = document.getElementById('compare1');
+        const slider = container.querySelector('.comparison-slider');
+        const afterImg = container.querySelector('.after-image');
+        let isDragging = false;
+
+        const updateSlider = (x) => {
+            const rect = container.getBoundingClientRect();
+            let percentage = ((x - rect.left) / rect.width) * 100;
+            percentage = Math.max(0, Math.min(100, percentage));
+            slider.style.left = percentage + '%';
+            afterImg.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        };
+
+        slider.addEventListener('mousedown', () => isDragging = true);
+        document.addEventListener('mouseup', () => isDragging = false);
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.clientX);
         });
 
-        // Lightbox
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const closeLightbox = document.getElementById('closeLightbox');
-        const galleryItems = document.querySelectorAll('.masonry-item');
-
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                lightbox.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            });
+        // Touch support
+        slider.addEventListener('touchstart', () => isDragging = true);
+        document.addEventListener('touchend', () => isDragging = false);
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.touches[0].clientX);
         });
 
-        closeLightbox.addEventListener('click', () => {
-            lightbox.classList.add('hidden');
-            document.body.style.overflow = '';
+        // Click to move
+        container.addEventListener('click', (e) => {
+            updateSlider(e.clientX);
         });
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.add('hidden');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Form Submission
+        // Form
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            // Simulate form submission
             const btn = e.target.querySelector('button');
-            const originalText = btn.innerHTML;
+            const originalText = btn.textContent;
             
-            btn.innerHTML = '<span class="relative text-sm tracking-widest uppercase">Enviando...</span>';
+            btn.textContent = 'Enviando...';
             btn.disabled = true;
             
             setTimeout(() => {
-                btn.innerHTML = '<span class="relative text-sm tracking-widest uppercase">¡Mensaje Enviado!</span>';
-                btn.classList.add('bg-green-500', 'text-white');
-                btn.classList.remove('bg-white', 'text-black');
+                btn.textContent = 'Solicitud Enviada ✓';
+                btn.classList.add('bg-green-600', 'text-white');
+                btn.classList.remove('bg-malta-gold', 'text-malta-deep');
                 
                 setTimeout(() => {
                     e.target.reset();
-                    btn.innerHTML = originalText;
+                    btn.textContent = originalText;
                     btn.disabled = false;
-                    btn.classList.remove('bg-green-500', 'text-white');
-                    btn.classList.add('bg-white', 'text-black');
+                    btn.classList.remove('bg-green-600', 'text-white');
+                    btn.classList.add('bg-malta-gold', 'text-malta-deep');
                 }, 3000);
             }, 1500);
         });
 
-        // Smooth scroll for navigation
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        let menuOpen = false;
+        
+        menuBtn.addEventListener('click', () => {
+            // Implementar menú móvil si es necesario
+            menuOpen = !menuOpen;
         });
     </script>
 </body>
